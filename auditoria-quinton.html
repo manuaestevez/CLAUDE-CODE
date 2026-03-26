@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditoría Web — quinton.com.ar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #e41e1e;
+      --red-dark: #b91111;
+      --black:  #0d0d0d;
+      --gray:   #1a1a1a;
+      --gray-2: #2a2a2a;
+      --gray-light: #f4f4f4;
+      --white:  #ffffff;
+      --text-muted: #999;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--gray-light);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      padding: 0;
+    }
+
+    .header-top {
+      background: var(--red);
+      height: 5px;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 24px 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      background: var(--red);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .header-text h1 span { color: var(--red); }
+
+    .header-text p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .header-meta {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .header-meta .platform {
+      background: var(--gray-2);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .header-meta .date {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 32px 16px; }
+
+    /* ── SUMMARY CARDS ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .summary-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      border-top: 4px solid transparent;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .summary-card.c-red   { border-color: #e41e1e; }
+    .summary-card.c-orange{ border-color: #f97316; }
+    .summary-card.c-yellow{ border-color: #eab308; }
+    .summary-card.c-green { border-color: #22c55e; }
+
+    .summary-card .num { font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+    .summary-card.c-red    .num { color: #e41e1e; }
+    .summary-card.c-orange .num { color: #f97316; }
+    .summary-card.c-yellow .num { color: #eab308; }
+    .summary-card.c-green  .num { color: #22c55e; }
+
+    .summary-card .lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #666; font-weight: 600; }
+
+    /* ── SECTION ── */
+    .section {
+      background: var(--white);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section-head.critical { background: #fff0f0; border-left: 4px solid #e41e1e; }
+    .section-head.high     { background: #fff7ed; border-left: 4px solid #f97316; }
+    .section-head.medium   { background: #fefce8; border-left: 4px solid #eab308; }
+    .section-head.good     { background: #f0fdf4; border-left: 4px solid #22c55e; }
+    .section-head.neutral  { background: #f8fafc; border-left: 4px solid #64748b; }
+
+    .section-head h2 { font-size: 1rem; font-weight: 700; }
+
+    .pill {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pill.critical { background: #fecaca; color: #b91c1c; }
+    .pill.high     { background: #fed7aa; color: #c2410c; }
+    .pill.medium   { background: #fef08a; color: #a16207; }
+    .pill.good     { background: #bbf7d0; color: #15803d; }
+
+    .section-body { padding: 18px 20px; }
+
+    /* ── ISSUE CARD ── */
+    .issue {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid #e5e7eb;
+    }
+    .issue:last-child { margin-bottom: 0; }
+
+    .issue h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 5px; }
+    .issue p  { font-size: 0.85rem; color: #4b5563; margin-bottom: 8px; }
+    .issue p:last-child { margin-bottom: 0; }
+
+    .issue.critical { background: #fff0f0; border-color: #fecaca; }
+    .issue.high     { background: #fff7ed; border-color: #fed7aa; }
+    .issue.medium   { background: #fefce8; border-color: #fef08a; }
+
+    .action {
+      background: #eff6ff;
+      border-left: 3px solid #3b82f6;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.83rem;
+      color: #1d4ed8;
+    }
+
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      margin-top: 8px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* ── GOOD LIST ── */
+    .good-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px;
+    }
+
+    .good-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.87rem;
+      background: #f0fdf4;
+      padding: 9px 13px;
+      border-radius: 7px;
+      border: 1px solid #bbf7d0;
+    }
+
+    .good-list li::before {
+      content: "✓";
+      color: #16a34a;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ── TABLE ── */
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+
+    thead th {
+      background: #f1f5f9;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 700;
+      color: #475569;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f8fafc; }
+
+    td .tag-red    { color: #dc2626; font-weight: 700; }
+    td .tag-orange { color: #ea580c; font-weight: 700; }
+    td .tag-yellow { color: #ca8a04; font-weight: 700; }
+
+    /* ── PLAN ── */
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .plan-week { border-radius: 9px; overflow: hidden; border: 1px solid #e5e7eb; }
+
+    .plan-head {
+      padding: 11px 16px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .plan-week:nth-child(1) .plan-head { background: var(--red); }
+    .plan-week:nth-child(2) .plan-head { background: #f97316; }
+    .plan-week:nth-child(3) .plan-head { background: #eab308; color: #1a1a1a; }
+
+    .plan-body {
+      padding: 13px 16px 13px 30px;
+      font-size: 0.84rem;
+      color: #374151;
+    }
+
+    .plan-body li { margin-bottom: 6px; }
+    .plan-body li:last-child { margin-bottom: 0; }
+
+    /* ── PRODUCT TABLE ── */
+    .product-row td:nth-child(3) { color: #dc2626; font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--text-muted);
+      text-align: center;
+      padding: 28px;
+      font-size: 0.78rem;
+      margin-top: 8px;
+    }
+
+    footer span { color: var(--red); font-weight: 700; }
+
+    @media (max-width: 700px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .plan-grid    { grid-template-columns: 1fr; }
+      .header-inner { flex-wrap: wrap; }
+      .header-meta  { margin-left: 0; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top"></div>
+  <div class="header-inner">
+    <div class="brand-logo">Q</div>
+    <div class="header-text">
+      <h1>Auditoría Web <span>Quinton</span></h1>
+      <p>quinton.com.ar &nbsp;·&nbsp; Monopatines y Bicicletas Eléctricas</p>
+    </div>
+    <div class="header-meta">
+      <div class="platform">Shopify</div>
+      <div class="date">26 de marzo de 2026</div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- RESUMEN -->
+  <div class="summary-grid">
+    <div class="summary-card c-red">
+      <div class="num">4</div>
+      <div class="lbl">Crítico</div>
+    </div>
+    <div class="summary-card c-orange">
+      <div class="num">5</div>
+      <div class="lbl">Alto</div>
+    </div>
+    <div class="summary-card c-yellow">
+      <div class="num">7</div>
+      <div class="lbl">Medio</div>
+    </div>
+    <div class="summary-card c-green">
+      <div class="num">5</div>
+      <div class="lbl">Correcto</div>
+    </div>
+  </div>
+
+  <!-- ═══ CRÍTICO ═══ -->
+  <div class="section">
+    <div class="section-head critical">
+      <span>🔴</span>
+      <h2>Problemas Críticos</h2>
+      <span class="pill critical">Acción inmediata</span>
+    </div>
+    <div class="section-body">
+
+      <div class="issue critical">
+        <h3>1. Title tag de solo 7 caracteres — "Quinton"</h3>
+        <p>El título de la página es únicamente la palabra <strong>"Quinton"</strong>. Google trunca y penaliza títulos sin keywords. El rango óptimo es 50–60 caracteres. Se están perdiendo todas las búsquedas de "monopatines eléctricos", "bicicletas eléctricas", "Argentina", etc.</p>
+        <div class="action">
+          <strong>Cambiar a:</strong> <em>"Quinton | Monopatines y Bicicletas Eléctricas en Argentina"</em> (56 caracteres)
+        </div>
+      </div>
+
+      <div class="issue critical">
+        <h3>2. Meta description ausente — Google la autogenera</h3>
+        <p>No se detectó una meta description definida. Google muestra automáticamente fragmentos de texto del body de la página, lo que resulta en snippets inconsistentes y sin CTA. Esto impacta directamente el CTR desde los resultados de búsqueda.</p>
+        <div class="action">
+          <strong>Agregar en Shopify → Online Store → Preferences → Meta description:</strong><br>
+          <em>"Comprá monopatines y bicicletas eléctricas Daihatsu en Quinton. Hasta 12 cuotas fijas. Envíos a todo el país por Correo Argentino. ¡Al mejor precio garantizado!"</em> (160 caracteres)
+        </div>
+      </div>
+
+      <div class="issue critical">
+        <h3>3. Todos los productos visibles están "Agotado"</h3>
+        <p>Los 5 productos confirmados en Google (Daihatsu V1, V1 Pro, V2, V-100, V-300) aparecen con estado <strong>"Agotado"</strong>. Esto destruye la tasa de conversión: los visitantes que llegan por SEO o publicidad no pueden comprar. Además, el schema de disponibilidad en Google Shopping muestra "OutOfStock" perjudicando los rich results.</p>
+        <div class="action">
+          <strong>Opciones:</strong> (a) Reponer stock urgente. (b) Agregar formulario "Avisame cuando llegue" en cada producto. (c) Si hay nuevos modelos, crearlos y redirigir el tráfico con 301.
+        </div>
+      </div>
+
+      <div class="issue critical">
+        <h3>4. Solo 8 páginas indexadas en Google</h3>
+        <p>Para una tienda de e-commerce activa, tener únicamente 8 URLs en el índice de Google es muy bajo. Esto puede indicar problemas de rastreo, sitemap no enviado a Google Search Console, o productos sin publicar.</p>
+        <div class="action">
+          <strong>Acción:</strong> Entrar a Google Search Console → Sitemaps → enviar <code>https://quinton.com.ar/sitemap.xml</code>. Revisar la sección "Cobertura" para detectar páginas excluidas o con errores.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ ALTO ═══ -->
+  <div class="section">
+    <div class="section-head high">
+      <span>🟠</span>
+      <h2>Problemas de Alta Prioridad</h2>
+      <span class="pill high">Esta semana</span>
+    </div>
+    <div class="section-body">
+
+      <div class="issue high">
+        <h3>5. Open Graph tags sin confirmar — Redes sociales sin imagen</h3>
+        <p>No se pudieron confirmar las etiquetas og:title, og:description y og:image. Sin un og:image definido de al menos 1200×630px, cuando alguien comparte la tienda en WhatsApp, Instagram o Facebook, el preview aparece vacío o con una imagen incorrecta.</p>
+        <div class="action">
+          <strong>Shopify → Online Store → Preferences</strong> → completar "Social sharing image" con una imagen de producto de alta resolución (1200×630px mínimo).
+        </div>
+      </div>
+
+      <div class="issue high">
+        <h3>6. Schema Organization ausente en homepage</h3>
+        <p>La página de inicio no tiene datos estructurados que identifiquen la marca ante Google (logo, redes sociales, contacto). Esto impide que Google genere un "Knowledge Panel" de la marca en los resultados de búsqueda.</p>
+        <div class="action">
+          <strong>Agregar en el theme.liquid, antes de &lt;/head&gt;:</strong>
+        </div>
+        <div class="code-block">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Quinton",
+  "url": "https://quinton.com.ar",
+  "description": "Tienda de monopatines y bicicletas eléctricas en Argentina",
+  "logo": "URL_DEL_LOGO_AQUI",
+  "sameAs": ["URL_INSTAGRAM_AQUI"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "availableLanguage": "Spanish"
+  }
+}
+&lt;/script&gt;</div>
+      </div>
+
+      <div class="issue high">
+        <h3>7. Nombres de producto inconsistentes</h3>
+        <p>Los productos usan convenciones de nombre distintas: algunos usan "Daihatsu V1 / V2" y otros "DAIHATSU V-100 / V-300". Esta inconsistencia afecta el SEO de los títulos, la experiencia de usuario y la coherencia del catálogo.</p>
+        <div class="action">
+          <strong>Unificar</strong> todos los títulos con el formato: <em>"Monopatín Eléctrico Daihatsu [Modelo] | Quinton"</em>. Ejemplo: "Monopatín Eléctrico Daihatsu V2 | Quinton".
+        </div>
+      </div>
+
+      <div class="issue high">
+        <h3>8. CUIT y datos legales no confirmados en el sitio</h3>
+        <p>Para e-commerce argentino es obligatorio mostrar el CUIT, razón social y domicilio de la empresa (Ley 24.240 de Defensa del Consumidor). Su ausencia reduce la confianza del comprador y puede generar problemas legales.</p>
+        <div class="action">
+          <strong>Agregar en el footer:</strong> CUIT, razón social y dirección. También agregar páginas de "Política de devoluciones" y "Términos y condiciones" si no existen.
+        </div>
+      </div>
+
+      <div class="issue high">
+        <h3>9. robots.txt y sitemap.xml inaccesibles para verificar</h3>
+        <p>No se pudo verificar el contenido de <code>/robots.txt</code>. Si hay directivas incorrectas que bloquean secciones importantes del sitio (como <code>/collections/</code> o <code>/products/</code>), Google no podrá rastrear esas páginas.</p>
+        <div class="action">
+          <strong>Verificar manualmente</strong> accediendo a <code>quinton.com.ar/robots.txt</code> desde el navegador. Confirmar que no existe ningún <code>Disallow: /products/</code> o <code>Disallow: /collections/</code>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ MEDIO ═══ -->
+  <div class="section">
+    <div class="section-head medium">
+      <span>🟡</span>
+      <h2>Mejoras de Prioridad Media</h2>
+      <span class="pill medium">Próximas 2 semanas</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Problema</th>
+            <th>Prioridad</th>
+            <th>Acción recomendada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10</td>
+            <td><strong>Alt text en imágenes de productos no verificado</strong><br>Shopify por defecto usa el nombre del producto — puede ser insuficiente.</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>En cada producto, ir a la imagen → editar alt text con descripción detallada: <em>"Monopatín eléctrico Daihatsu V2 plegable con pantalla LED, color negro"</em></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td><strong>Atributo lang no confirmado</strong><br>El HTML debería tener <code>lang="es-AR"</code> para lectores de pantalla y señales de idioma para Google.</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>En <code>theme.liquid</code>, verificar que la etiqueta &lt;html&gt; tenga <code>lang="es-AR"</code>.</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td><strong>BreadcrumbList schema en páginas de producto</strong><br>No confirmado. Sin él, Google muestra la URL completa en lugar de una miga de pan.</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>Agregar JSON-LD <code>BreadcrumbList</code> en los templates de colección y producto de Shopify.</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td><strong>Sin blog de contenidos</strong><br>No se detectó sección de blog. El blog es clave para capturar búsquedas informacionales como "mejor monopatín eléctrico Argentina".</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>Crear blog en Shopify con artículos como: "Guía para elegir tu primer monopatín eléctrico", "Comparativa Daihatsu V1 vs V2", "¿Vale la pena una bicicleta eléctrica en Argentina?"</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td><strong>Banner de cookies no confirmado</strong><br>Con Facebook Pixel y Google Analytics activos (probable), se requiere consentimiento según Ley 25.326.</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>Instalar app de cookie consent desde la Shopify App Store (ej: CookieYes, Pandectes).</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td><strong>Logos de medios de pago no confirmados en checkout</strong><br>Mostrar íconos de Visa, Mastercard, Mercado Pago y transferencia bancaria genera confianza y reduce abandono.</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>Agregar íconos de medios de pago en el footer y en las páginas de producto, cerca del botón "Agregar al carrito".</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td><strong>Presencia en redes sociales no confirmada</strong><br>Los clientes mencionan encontrarlos "en Instagram" pero no se confirmó el handle oficial.</td>
+            <td><span class="tag-yellow">MEDIO</span></td>
+            <td>Asegurar que los links a Instagram (y otras redes) estén visibles en el header o footer del sitio.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ PRODUCTOS ═══ -->
+  <div class="section">
+    <div class="section-head" style="background:#fff0f0; border-left:4px solid #e41e1e;">
+      <span>🛴</span>
+      <h2>Estado del Catálogo de Productos</h2>
+      <span class="pill critical">Requiere acción urgente</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>URL</th>
+            <th>Estado</th>
+            <th>Precio (ARS)</th>
+          </tr>
+        </thead>
+        <tbody class="product-row">
+          <tr>
+            <td>Daihatsu V1</td>
+            <td><code>/products/monopatin-electrico-v1</code></td>
+            <td><span class="tag-red">⚠ Agotado</span></td>
+            <td>$499.000</td>
+          </tr>
+          <tr>
+            <td>Daihatsu V1 Pro</td>
+            <td><code>/products/monopatin-electrico-v1-pro</code></td>
+            <td><span class="tag-red">⚠ Agotado</span></td>
+            <td>$649.000</td>
+          </tr>
+          <tr>
+            <td>Daihatsu V2</td>
+            <td><code>/products/monopatin-electrico-v2</code></td>
+            <td><span class="tag-red">⚠ Agotado</span></td>
+            <td>$899.900</td>
+          </tr>
+          <tr>
+            <td>Daihatsu V-100</td>
+            <td><code>/products/daihatsu-v-100</code></td>
+            <td><span class="tag-red">⚠ Agotado</span></td>
+            <td>$559.000</td>
+          </tr>
+          <tr>
+            <td>Daihatsu V-300</td>
+            <td><code>/products/daihatsu-v-300</code></td>
+            <td><span class="tag-red">⚠ Agotado</span></td>
+            <td>$1.599.900</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px; font-size:0.83rem; color:#dc2626; font-weight:600;">⚠ 5 de 5 productos confirmados están sin stock. Esto es la causa #1 de pérdida de ventas.</p>
+    </div>
+  </div>
+
+  <!-- ═══ BIEN ═══ -->
+  <div class="section">
+    <div class="section-head good">
+      <span>🟢</span>
+      <h2>Lo que ya está bien</h2>
+      <span class="pill good">Sin cambios necesarios</span>
+    </div>
+    <div class="section-body">
+      <ul class="good-list">
+        <li>HTTPS activo y SSL válido</li>
+        <li>Plataforma Shopify (CDN Fastly, performance base buena)</li>
+        <li>Reseñas de clientes presentes y visibles</li>
+        <li>Propuestas de valor claras (cuotas, envíos, precio)</li>
+        <li>Envío por Correo Argentino con cobertura nacional</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PLAN ═══ -->
+  <div class="section">
+    <div class="section-head neutral">
+      <span>📅</span>
+      <h2>Plan de Acción — 3 Semanas</h2>
+    </div>
+    <div class="section-body">
+      <div class="plan-grid">
+
+        <div class="plan-week">
+          <div class="plan-head">⚡ Semana 1 — Crítico</div>
+          <ol class="plan-body">
+            <li>Cambiar title tag por uno optimizado (56 chars)</li>
+            <li>Agregar meta description en Shopify Preferences</li>
+            <li>Resolver el stock o agregar "Avisame cuando llegue"</li>
+            <li>Enviar sitemap a Google Search Console</li>
+            <li>Verificar robots.txt en el navegador</li>
+          </ol>
+        </div>
+
+        <div class="plan-week">
+          <div class="plan-head">🔧 Semana 2 — Alto</div>
+          <ol class="plan-body">
+            <li>Agregar schema Organization en theme.liquid</li>
+            <li>Configurar Open Graph image en Shopify</li>
+            <li>Unificar nombres de productos</li>
+            <li>Agregar CUIT y datos legales en el footer</li>
+            <li>Verificar y agregar páginas de políticas</li>
+          </ol>
+        </div>
+
+        <div class="plan-week">
+          <div class="plan-head">📈 Semana 3 — Medio</div>
+          <ol class="plan-body">
+            <li>Completar alt texts en imágenes de productos</li>
+            <li>Agregar logos de medios de pago</li>
+            <li>Instalar banner de cookies</li>
+            <li>Crear primer artículo de blog SEO</li>
+            <li>Auditar con Google PageSpeed Insights</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Auditoría generada el 26 de marzo de 2026 &nbsp;·&nbsp; <span>quinton.com.ar</span> &nbsp;·&nbsp; Plataforma: Shopify
+</footer>
+
+</body>
+</html>
