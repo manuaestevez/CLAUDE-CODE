@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditoría Web — mateslaplata.com.ar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: white;
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    header p { color: #a0aec0; font-size: 1rem; }
+    header .url { color: #63b3ed; font-weight: 600; font-size: 1.1rem; margin-top: 8px; }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 32px 16px; }
+
+    /* Summary cards */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .summary-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .summary-card .badge {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .summary-card .label { font-size: 0.8rem; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; }
+    .summary-card .count { font-size: 1.6rem; font-weight: 700; }
+    .count.red { color: #e53e3e; }
+    .count.orange { color: #dd6b20; }
+    .count.yellow { color: #d69e2e; }
+    .count.green { color: #38a169; }
+
+    /* Sections */
+    .section {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .section-header.critical { background: #fff5f5; border-left: 4px solid #e53e3e; }
+    .section-header.high     { background: #fffaf0; border-left: 4px solid #dd6b20; }
+    .section-header.medium   { background: #fffff0; border-left: 4px solid #d69e2e; }
+    .section-header.good     { background: #f0fff4; border-left: 4px solid #38a169; }
+
+    .section-header h2 { font-size: 1.1rem; font-weight: 700; }
+    .section-header .pill {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pill.critical { background: #fed7d7; color: #c53030; }
+    .pill.high     { background: #feebc8; color: #c05621; }
+    .pill.medium   { background: #fefcbf; color: #b7791f; }
+    .pill.good     { background: #c6f6d5; color: #276749; }
+
+    .section-body { padding: 20px 24px; }
+
+    /* Issue items */
+    .issue {
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .issue:last-child { margin-bottom: 0; }
+
+    .issue h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .issue p { font-size: 0.88rem; color: #4a5568; margin-bottom: 8px; }
+    .issue p:last-child { margin-bottom: 0; }
+
+    .issue .action {
+      background: #ebf8ff;
+      border-left: 3px solid #3182ce;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #2b6cb0;
+    }
+
+    .issue.critical-item { background: #fff5f5; border-color: #fed7d7; }
+    .issue.high-item     { background: #fffaf0; border-color: #feebc8; }
+    .issue.medium-item   { background: #fffff0; border-color: #fefcbf; }
+
+    /* Good items list */
+    .good-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .good-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      background: #f0fff4;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #c6f6d5;
+    }
+
+    .good-list li::before {
+      content: "✓";
+      color: #38a169;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.87rem;
+    }
+
+    thead th {
+      background: #edf2f7;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      color: #4a5568;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f7fafc; }
+
+    /* Plan */
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .plan-week {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .plan-week-header {
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .week-1 .plan-week-header { background: #e53e3e; }
+    .week-2 .plan-week-header { background: #dd6b20; }
+    .week-3 .plan-week-header { background: #d69e2e; }
+
+    .plan-week ol {
+      padding: 14px 16px 14px 30px;
+      font-size: 0.87rem;
+      color: #4a5568;
+    }
+
+    .plan-week ol li { margin-bottom: 6px; }
+    .plan-week ol li:last-child { margin-bottom: 0; }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: #718096;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Auditoría Web Completa</h1>
+  <p class="url">mateslaplata.com.ar</p>
+  <p>Plataforma: Tiendanube &nbsp;·&nbsp; Fecha: 26 de marzo de 2026</p>
+</header>
+
+<div class="container">
+
+  <!-- Summary -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <span class="badge">🔴</span>
+      <div class="count red">2</div>
+      <div class="label">Crítico</div>
+    </div>
+    <div class="summary-card">
+      <span class="badge">🟠</span>
+      <div class="count orange">3</div>
+      <div class="label">Alto</div>
+    </div>
+    <div class="summary-card">
+      <span class="badge">🟡</span>
+      <div class="count yellow">5</div>
+      <div class="label">Medio</div>
+    </div>
+    <div class="summary-card">
+      <span class="badge">🟢</span>
+      <div class="count green">7</div>
+      <div class="label">Correcto</div>
+    </div>
+  </div>
+
+  <!-- CRÍTICO -->
+  <div class="section">
+    <div class="section-header critical">
+      <span>🔴</span>
+      <h2>Problemas Críticos</h2>
+      <span class="pill critical">Acción inmediata</span>
+    </div>
+    <div class="section-body">
+
+      <div class="issue critical-item">
+        <h3>1. Googlebot podría estar bloqueado (HTTP 403)</h3>
+        <p>El sitio responde con <strong>403 Forbidden</strong> a bots y crawlers. Si Googlebot también recibe este error, tu tienda <strong>no se indexa en Google</strong> y no recibirás tráfico orgánico.</p>
+        <div class="action">
+          <strong>Acción:</strong> Entrá a Google Search Console → Cobertura → verificá errores de rastreo. Revisá las reglas de tu CDN/WAF (Cloudflare u otro) para asegurarte de que Googlebot y Bingbot estén en la lista blanca.
+        </div>
+      </div>
+
+      <div class="issue critical-item">
+        <h3>2. Dominio duplicado — Dos URLs indexadas simultáneamente</h3>
+        <p>Tu tienda existe en dos dominios al mismo tiempo: <strong>mateslaplata.com.ar</strong> (correcto) y <strong>mateslaplata.mitiendanube.com</strong> (duplicado). Google ve el mismo contenido dos veces, divide el PageRank entre ambos dominios y diluye todo tu posicionamiento SEO.</p>
+        <div class="action">
+          <strong>Acción:</strong> En el panel de Tiendanube → Configuraciones → Dominio → configurar redirect 301 de <em>mitiendanube.com</em> hacia <em>mateslaplata.com.ar</em>. Esto consolida toda la autoridad de dominio en una sola URL.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ALTO -->
+  <div class="section">
+    <div class="section-header high">
+      <span>🟠</span>
+      <h2>Problemas de Alta Prioridad</h2>
+      <span class="pill high">Esta semana</span>
+    </div>
+    <div class="section-body">
+
+      <div class="issue high-item">
+        <h3>3. Sin sistema de reseñas de clientes</h3>
+        <p>No se detectó ningún sistema de valoraciones. Sin reseñas, Google no puede mostrar <strong>estrellas en los resultados de búsqueda</strong> (rich snippets). Las estrellas aumentan el CTR entre un 15% y 35%, y son el factor #1 de conversión en e-commerce.</p>
+        <div class="action">
+          <strong>Acción:</strong> Instalar una app de reseñas desde el App Store de Tiendanube (opciones: "Reseñas" nativa, Trustpilot, u otras). Una vez activa, habilitar el schema <code>AggregateRating</code> en los productos.
+        </div>
+      </div>
+
+      <div class="issue high-item">
+        <h3>4. jQuery 1.11.1 en uso (versión del año 2014)</h3>
+        <p>La versión de jQuery detectada en el tema tiene <strong>vulnerabilidades de seguridad conocidas</strong> (CVEs documentados) y es considerablemente más pesada que versiones modernas. jQuery 3.7+ es la versión actual.</p>
+        <div class="action">
+          <strong>Acción:</strong> Verificar si Tiendanube provee una actualización del tema. Si el tema es personalizado, actualizar jQuery a la versión 3.7 o migrar las dependencias a JavaScript vanilla donde sea posible.
+        </div>
+      </div>
+
+      <div class="issue high-item">
+        <h3>5. Sin banner de consentimiento de cookies</h3>
+        <p>Facebook Pixel y Google Analytics están activos pero no se detectó ningún mecanismo de consentimiento. Esto representa un <strong>riesgo legal</strong> bajo la Ley de Protección de Datos argentina (PDPA) y el GDPR para clientes del exterior (especialmente relevante si tenés ventas internacionales vía mateslaplatausa.com).</p>
+        <div class="action">
+          <strong>Acción:</strong> Instalar una app de cookie consent desde el App Store de Tiendanube o implementar una solución como CookieYes o Cookiebot.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MEDIO -->
+  <div class="section">
+    <div class="section-header medium">
+      <span>🟡</span>
+      <h2>Mejoras de Prioridad Media</h2>
+      <span class="pill medium">Próximas 2 semanas</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Problema</th>
+            <th>Impacto</th>
+            <th>Acción recomendada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>6</td>
+            <td><strong>Meta description no optimizada</strong><br>No se detectó una meta description bien redactada con keywords y CTA.</td>
+            <td>Menos clics desde Google (menor CTR)</td>
+            <td>Escribir una de 140–160 caracteres por tipo de página. Ejemplo: <em>"Comprá mates artesanales premium con virola de alpaca. Envío gratis desde $70.000. Cuotas y efectivo. ¡Desde 2020!"</em></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>Sin schema BreadcrumbList</strong><br>Las URLs tienen jerarquía clara (<code>/mates/madera/</code>) pero Google no muestra la miga de pan en los resultados.</td>
+            <td>Peor apariencia en SERPs</td>
+            <td>Agregar JSON-LD <code>BreadcrumbList</code> en páginas de categoría y producto.</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><strong>Sin schema Organization</strong><br>La marca no tiene datos estructurados que la identifiquen en Google (logo, redes, contacto).</td>
+            <td>Menor autoridad de marca en Google</td>
+            <td>Agregar JSON-LD <code>Organization</code> con <code>name</code>, <code>logo</code>, <code>url</code>, <code>sameAs</code> (Instagram <em>@mates.laplata</em>), y <code>contactPoint</code> (WhatsApp).</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><strong>Google Fonts posiblemente bloqueante</strong><br>Si las fuentes se cargan en el <code>&lt;head&gt;</code> sin <code>display=swap</code>, el texto es invisible hasta que carga la fuente (FOIT).</td>
+            <td>Penaliza el LCP (velocidad percibida)</td>
+            <td>Agregar <code>&display=swap</code> a todas las URLs de Google Fonts y añadir <code>rel="preconnect"</code> para <em>fonts.gstatic.com</em>.</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><strong>Alt text en banners e imágenes hero probablemente vacío</strong><br>Las imágenes decorativas de sección suelen tener <code>alt=""</code> en los temas de Tiendanube.</td>
+            <td>SEO de imágenes + accesibilidad</td>
+            <td>Completar el campo alt en cada imagen desde el panel de Tiendanube. Usar texto descriptivo como <em>"Mate artesanal con virola de alpaca y bombilla incluida"</em>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BIEN -->
+  <div class="section">
+    <div class="section-header good">
+      <span>🟢</span>
+      <h2>Lo que ya está bien</h2>
+      <span class="pill good">Sin cambios necesarios</span>
+    </div>
+    <div class="section-body">
+      <ul class="good-list">
+        <li>HTTPS activo y certificado SSL válido</li>
+        <li>Diseño Mobile First (Bootstrap 4)</li>
+        <li>Lazy loading de imágenes con Lazysizes</li>
+        <li>CSS y JS minificados por Tiendanube CDN</li>
+        <li>Semántica HTML5 (header, main, footer, nav)</li>
+        <li>Señales de confianza visibles (envío gratis, devoluciones, garantía, cuotas)</li>
+        <li>WhatsApp flotante integrado (clave en Argentina)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PLAN -->
+  <div class="section">
+    <div class="section-header" style="background:#f7fafc; border-left: 4px solid #4a5568;">
+      <span>📅</span>
+      <h2>Plan de Acción — 3 Semanas</h2>
+    </div>
+    <div class="section-body">
+      <div class="plan-grid">
+
+        <div class="plan-week week-1">
+          <div class="plan-week-header">Semana 1 — Sin código</div>
+          <ol>
+            <li>Verificar rastreo en Google Search Console</li>
+            <li>Enviar sitemap: <em>/sitemap.xml</em></li>
+            <li>Configurar redirect 301 del subdominio mitiendanube</li>
+            <li>Instalar app de reseñas de clientes</li>
+          </ol>
+        </div>
+
+        <div class="plan-week week-2">
+          <div class="plan-week-header">Semana 2 — SEO On-Page</div>
+          <ol>
+            <li>Reescribir meta descriptions (home, categorías, top productos)</li>
+            <li>Agregar schema Organization en el homepage</li>
+            <li>Agregar BreadcrumbList en categorías y productos</li>
+            <li>Completar alt text en imágenes de banners</li>
+          </ol>
+        </div>
+
+        <div class="plan-week week-3">
+          <div class="plan-week-header">Semana 3 — Performance y Legal</div>
+          <ol>
+            <li>Instalar banner de consentimiento de cookies</li>
+            <li>Optimizar carga de Google Fonts (display=swap)</li>
+            <li>Revisar y actualizar jQuery en el tema</li>
+            <li>Auditar con Lighthouse y ajustar Core Web Vitals</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Auditoría generada el 26 de marzo de 2026 &nbsp;·&nbsp; mateslaplata.com.ar &nbsp;·&nbsp; Plataforma: Tiendanube
+</footer>
+
+</body>
+</html>
