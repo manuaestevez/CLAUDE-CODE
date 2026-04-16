@@ -519,6 +519,14 @@
       font-family: 'Oswald', sans-serif;
     }
 
+    .plan-price-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
     .plan-price-range {
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
@@ -528,6 +536,33 @@
 
     .plan-body {
       padding: 28px;
+    }
+
+    .plan-section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .plan-section-label:first-child { margin-top: 0; }
+
+    .plan-section-label--no {
+      color: #555;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .plans-footnote {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.78rem;
+      color: #555;
+      letter-spacing: 0.02em;
     }
 
     .plan-desc {
@@ -1040,53 +1075,43 @@
       <div class="plan-card">
         <div class="plan-head">
           <div class="plan-name">Inicial</div>
+          <div class="plan-price-subtitle">"Automatizá lo básico"</div>
           <div class="plan-price"><sup>USD</sup>200<span style="font-size:1.4rem;color:var(--gray)">–350</span></div>
-          <div class="plan-price-range">por mes · según alcance</div>
+          <div class="plan-price-range">por mes</div>
         </div>
         <div class="plan-body">
-          <p class="plan-desc">Ideal para negocios que quieren su primer sistema de IA funcionando rápido con bajo riesgo.</p>
+          <p class="plan-section-label">Incluye</p>
           <ul class="plan-features">
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              1 automatización principal
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Hasta 3 automatizaciones o implementaciones por mes
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Integración con 2 herramientas
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              1 reunión mensual de 30 min (revisión + planificación)
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              WhatsApp o email automatizado
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Soporte por WhatsApp (respuesta en 24hs hábiles)
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Dashboard de métricas básico
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Reporte mensual de lo implementado
             </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Soporte por WhatsApp
+          </ul>
+          <p class="plan-section-label plan-section-label--no">No incluye</p>
+          <ul class="plan-features">
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Creación de contenido
             </li>
             <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/>
-              </svg>
-              Flujos multicanal
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Desarrollo custom (bots, apps)
             </li>
             <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/>
-              </svg>
-              Agente IA personalizado
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Capacitación de equipo
             </li>
           </ul>
           <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
@@ -1098,53 +1123,43 @@
         <div class="plan-badge">Más elegido</div>
         <div class="plan-head">
           <div class="plan-name">Crecimiento</div>
+          <div class="plan-price-subtitle">"Tu equipo de IA"</div>
           <div class="plan-price"><sup>USD</sup>500<span style="font-size:1.4rem;color:var(--gray)">–750</span></div>
-          <div class="plan-price-range">por mes · según alcance</div>
+          <div class="plan-price-range">por mes</div>
         </div>
         <div class="plan-body">
-          <p class="plan-desc">Para negocios que quieren automatizar múltiples áreas y escalar sus ventas de forma sistemática.</p>
+          <p class="plan-section-label">Incluye</p>
           <ul class="plan-features">
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Hasta 4 automatizaciones
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Hasta 6 automatizaciones o implementaciones por mes
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Integración con todas tus herramientas
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Gestión de contenido con IA (calendario + captions o scripts)
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Flujos multicanal (WA + Email + IG)
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              2 reuniones mensuales de 30 min
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Dashboard avanzado con KPIs
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Soporte prioritario por WhatsApp (respuesta en 12hs)
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Reunión mensual de resultados
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Reporte mensual con métricas de impacto
             </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Soporte prioritario 5 días
+          </ul>
+          <p class="plan-section-label plan-section-label--no">No incluye</p>
+          <ul class="plan-features">
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Desarrollo de apps custom
             </li>
             <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/>
-              </svg>
-              Agente IA personalizado
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Capacitación de equipo
             </li>
           </ul>
           <a href="#agendar" class="plan-cta plan-cta-solid">Agendar llamada</a>
@@ -1155,53 +1170,40 @@
       <div class="plan-card">
         <div class="plan-head">
           <div class="plan-name">Premium</div>
+          <div class="plan-price-subtitle">"Transformación completa"</div>
           <div class="plan-price"><sup>USD</sup>1.000<span style="font-size:1.4rem;color:var(--gray)">–1.500</span></div>
-          <div class="plan-price-range">por mes · según alcance</div>
+          <div class="plan-price-range">por mes</div>
         </div>
         <div class="plan-body">
-          <p class="plan-desc">Solución completa para empresas que quieren un equipo de IA dedicado operando su crecimiento.</p>
+          <p class="plan-section-label">Incluye todo</p>
           <ul class="plan-features">
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Automatizaciones ilimitadas
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Hasta 10 implementaciones + 1 desarrollo custom por mes
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Agente IA personalizado con tu voz
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Gestión completa de contenido con IA
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Integración con ERP / CRM propio
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Capacitación del equipo (1 sesión/mes)
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Flujos multicanal ilimitados
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Reunión semanal de 30 min
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Reportes semanales ejecutivos
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Soporte prioritario (respuesta en 6hs)
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Soporte 7 días con SLA garantizado
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Roadmap trimestral de IA para tu negocio
             </li>
             <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                <polyline points="2 8 6 12 14 4"/>
-              </svg>
-              Account manager dedicado
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Prioridad absoluta
             </li>
           </ul>
           <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
@@ -1209,6 +1211,9 @@
       </div>
 
     </div>
+
+    <p class="plans-footnote">Sin compromiso de permanencia · Todos los planes incluyen auditoría inicial · Precios en USD</p>
+
   </div>
 </section>
 
