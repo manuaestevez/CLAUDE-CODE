@@ -886,6 +886,197 @@
         padding: 32px 24px;
       }
     }
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'200'%20height%3D'200'%3E%3Cfilter%20id%3D'g'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.8'%20numOctaves%3D'4'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20type%3D'saturate'%20values%3D'0'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'200'%20height%3D'200'%20filter%3D'url(%23g)'%2F%3E%3C%2Fsvg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* Noise alternada más densa en secciones oscuras */
+    #principios::after,
+    #planes::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'150'%20height%3D'150'%3E%3Cfilter%20id%3D'g'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.9'%20numOctaves%3D'4'%20stitchTiles%3D'stitch'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'150'%20height%3D'150'%20filter%3D'url(%23g)'%2F%3E%3C%2Fsvg%3E");
+      background-size: 150px 150px;
+    }
+
+    #principios,
+    #planes {
+      position: relative;
+    }
+
+    /* ── HERO: GLOW + TRACKS + PARTICLES ── */
+    .hero-glow {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(196,62,42,0.06) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-tracks {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      width: 52px;
+      height: 130%;
+      pointer-events: none;
+      opacity: 0.1;
+      will-change: transform;
+      background-image:
+        linear-gradient(#2a2a2a, #2a2a2a),
+        linear-gradient(#2a2a2a, #2a2a2a),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0, transparent 28px,
+          #1e1e1e 28px, #1e1e1e 33px,
+          transparent 33px, transparent 60px
+        );
+      background-size: 2px 100%, 2px 100%, 100% 60px;
+      background-position: 6px 0, 44px 0, 0 0;
+      background-repeat: no-repeat, no-repeat, repeat-y;
+    }
+
+    .particles-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: #2e2e2e;
+      opacity: 0;
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      12%  { opacity: 0.9; }
+      88%  { opacity: 0.35; }
+      100% { transform: translateY(-180px) translateX(var(--tx, 20px)); opacity: 0; }
+    }
+
+    /* ── SEPARADORES ROJOS ── */
+    .divider-red {
+      height: 1px;
+      background: linear-gradient(to right,
+        transparent 0%,
+        rgba(196,62,42,0.3) 15%,
+        rgba(196,62,42,0.3) 85%,
+        transparent 100%
+      );
+    }
+
+    /* ── NAV: underline animado ── */
+    .nav-links a:not(.nav-cta) {
+      position: relative;
+    }
+
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--white);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:not(.nav-cta):hover::after {
+      width: 100%;
+    }
+
+    /* ── BOTONES: microinteracciones ── */
+    .btn {
+      transition: transform 0.18s ease, background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.03) translateY(-2px);
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5a;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.35), 0 0 0 1px rgba(37,211,102,0.15);
+    }
+
+    .btn-agendar:hover {
+      border-color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 8px 24px rgba(196,62,42,0.1);
+    }
+
+    /* ── CASE CARDS: hover mejorado ── */
+    .case-card {
+      transition: border-color 0.2s, transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .case-card:hover {
+      border-color: rgba(196,62,42,0.45);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    }
+
+    /* ── FAB WHATSAPP: pulse ── */
+    @keyframes fabPulse {
+      0%, 78%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      83%            { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0.09); }
+      92%            { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 20px rgba(37,211,102,0.03); }
+    }
+
+    .fab-whatsapp {
+      animation: fabPulse 5s ease infinite;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .particle,
+      .hero-tracks {
+        display: none;
+      }
+      .fab-whatsapp {
+        animation: none;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -903,6 +1094,10 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
+
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-tracks" aria-hidden="true"></div>
+  <div class="particles-wrap" aria-hidden="true"></div>
 
   <span class="hero-eyebrow">Agencia de Automatización con IA</span>
 
@@ -937,11 +1132,12 @@
 
 </section>
 
+<div class="divider-red"></div>
 
 <!-- ── QUÉ HACEMOS ── -->
 <section id="que-hacemos" class="section">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-label">Servicios</span>
       <h2 class="section-title">Qué hacemos</h2>
       <p class="section-sub">Un proceso claro en tres pasos para transformar tu negocio con IA sin vueltas.</p>
@@ -949,7 +1145,7 @@
 
     <div class="services-grid">
 
-      <div class="service-card">
+      <div class="service-card fade-up" data-delay="0">
         <div class="service-number">01</div>
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -960,7 +1156,7 @@
         <p>Auditamos tu negocio en profundidad: flujos de trabajo, canales de venta y atención al cliente. Detectamos exactamente dónde la IA puede generar más impacto en menos tiempo.</p>
       </div>
 
-      <div class="service-card">
+      <div class="service-card fade-up" data-delay="0.13">
         <div class="service-number">02</div>
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -971,7 +1167,7 @@
         <p>Prototipamos soluciones en días usando herramientas no-code y low-code. Sin esperas. Validamos resultados reales antes de escalar para que cada peso invertido tenga retorno.</p>
       </div>
 
-      <div class="service-card">
+      <div class="service-card fade-up" data-delay="0.26">
         <div class="service-number">03</div>
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -986,30 +1182,31 @@
   </div>
 </section>
 
+<div class="divider-red"></div>
 
 <!-- ── PRINCIPIOS ── -->
 <section id="principios" class="section">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-label">Cómo trabajamos</span>
       <h2 class="section-title">Principios</h2>
     </div>
 
     <div class="principles-grid">
 
-      <div class="principle">
+      <div class="principle fade-up" data-delay="0">
         <div class="principle-bar"></div>
         <h3>Rápido</h3>
         <p>No creemos en proyectos de 6 meses. El primer resultado lo ves en la primera semana. Iteramos rápido, fallamos barato y escalamos lo que funciona.</p>
       </div>
 
-      <div class="principle">
+      <div class="principle fade-up" data-delay="0.13">
         <div class="principle-bar"></div>
         <h3>Integrado</h3>
         <p>Nos conectamos a las herramientas que ya usás: WhatsApp, Instagram, Shopify, Tiendanube, Gmail, Google Sheets y más. Sin migraciones traumáticas.</p>
       </div>
 
-      <div class="principle">
+      <div class="principle fade-up" data-delay="0.26">
         <div class="principle-bar"></div>
         <h3>Resultados</h3>
         <p>Solo implementamos lo que genera ROI medible. Si no podemos mostrarte el número, no lo hacemos. Métricas reales desde el día uno.</p>
@@ -1019,11 +1216,12 @@
   </div>
 </section>
 
+<div class="divider-red"></div>
 
 <!-- ── CASOS DE ÉXITO ── -->
 <section id="casos" class="section">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-label">Resultados reales</span>
       <h2 class="section-title">Casos de éxito</h2>
       <p class="section-sub">Negocios que automatizaron con Via Studio y hoy trabajan diferente.</p>
@@ -1031,24 +1229,24 @@
 
     <div class="cases-grid">
 
-      <div class="case-card">
-        <div class="case-metric">+65%</div>
+      <div class="case-card fade-up" data-delay="0">
+        <div class="case-metric fade-up" data-counter="true" data-target="65" data-prefix="+" data-suffix="%" data-delay="0.1">+65%</div>
         <div class="case-metric-label">apertura emails · carritos del 22% al 38%</div>
         <div class="case-client">Mates La Plata</div>
         <p class="case-desc">Previsualizador de grabado láser, emails de bienvenida automáticos con cupón, calendario de contenido mensual con IA.</p>
         <span class="case-tag">Email · IA · Tiendanube</span>
       </div>
 
-      <div class="case-card">
-        <div class="case-metric">3+</div>
+      <div class="case-card fade-up" data-delay="0.12">
+        <div class="case-metric fade-up" data-counter="true" data-target="3" data-prefix="" data-suffix="+" data-delay="0.22">3+</div>
         <div class="case-metric-label">hs/semana ahorradas</div>
         <div class="case-client">Tomy Medina</div>
         <p class="case-desc">Bot de scripts para Stories, plan de 15 reels/mes basado en datos de rendimiento, análisis de formatos top.</p>
         <span class="case-tag">WhatsApp · Instagram · IA</span>
       </div>
 
-      <div class="case-card">
-        <div class="case-metric">-40%</div>
+      <div class="case-card fade-up" data-delay="0.24">
+        <div class="case-metric fade-up" data-counter="true" data-target="40" data-prefix="-" data-suffix="%" data-delay="0.34">-40%</div>
         <div class="case-metric-label">costo por lead</div>
         <div class="case-client">Quinton</div>
         <p class="case-desc">Analista de tráfico IA, optimización automática de anuncios, dashboard de reportes inteligentes.</p>
@@ -1059,11 +1257,12 @@
   </div>
 </section>
 
+<div class="divider-red"></div>
 
 <!-- ── PLANES ── -->
 <section id="planes" class="section">
   <div class="section-inner">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-label">Precios</span>
       <h2 class="section-title">Planes</h2>
       <p class="section-sub">Elegí el plan que se adapta a tu etapa. Todos incluyen onboarding y soporte continuo.</p>
@@ -1072,7 +1271,7 @@
     <div class="plans-grid">
 
       <!-- INICIAL -->
-      <div class="plan-card">
+      <div class="plan-card fade-up" data-delay="0">
         <div class="plan-head">
           <div class="plan-name">Inicial</div>
           <div class="plan-price-subtitle">"Automatizá lo básico"</div>
@@ -1119,7 +1318,7 @@
       </div>
 
       <!-- CRECIMIENTO -->
-      <div class="plan-card featured">
+      <div class="plan-card featured fade-up" data-delay="0.1">
         <div class="plan-badge">Más elegido</div>
         <div class="plan-head">
           <div class="plan-name">Crecimiento</div>
@@ -1167,7 +1366,7 @@
       </div>
 
       <!-- PREMIUM -->
-      <div class="plan-card">
+      <div class="plan-card fade-up" data-delay="0.2">
         <div class="plan-head">
           <div class="plan-name">Premium</div>
           <div class="plan-price-subtitle">"Transformación completa"</div>
@@ -1217,13 +1416,14 @@
   </div>
 </section>
 
+<div class="divider-red"></div>
 
 <!-- ── AGENDAR ── -->
 <section id="agendar" class="section">
   <div class="section-inner">
     <div class="agendar-wrap">
 
-      <div class="agendar-text">
+      <div class="agendar-text fade-up">
         <span class="section-label">Sin compromiso</span>
         <h2 class="section-title">Agendá una reunión gratuita</h2>
         <p>En 30 minutos analizamos tu negocio, identificamos las automatizaciones de mayor impacto y te contamos exactamente qué haríamos y qué resultados esperás.</p>
@@ -1235,7 +1435,7 @@
         </ul>
       </div>
 
-      <div class="calendar-embed">
+      <div class="calendar-embed fade-up" data-delay="0.15">
         <iframe src="https://cal.com/manuel-estevez-hbwqaj/20-min-meeting" style="width:100%;height:600px;border:none;"></iframe>
       </div>
 
@@ -1302,6 +1502,84 @@
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
   </svg>
 </a>
+
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── PARTÍCULAS ── */
+  var wrap = document.querySelector('.particles-wrap');
+  if (wrap) {
+    for (var i = 0; i < 16; i++) {
+      var p = document.createElement('span');
+      p.className = 'particle';
+      var size = (1 + Math.random() * 1.4).toFixed(1);
+      var tx   = (-35 + Math.random() * 70).toFixed(0);
+      var dur  = (7 + Math.random() * 9).toFixed(1);
+      var del  = (-Math.random() * 14).toFixed(1);
+      p.style.cssText =
+        'left:'   + (5  + Math.random() * 90).toFixed(0) + '%;' +
+        'top:'    + (5  + Math.random() * 85).toFixed(0) + '%;' +
+        'width:'  + size + 'px;height:' + size + 'px;' +
+        '--tx:'   + tx   + 'px;' +
+        'animation-duration:' + dur + 's;' +
+        'animation-delay:'    + del + 's;';
+      wrap.appendChild(p);
+    }
+  }
+
+  /* ── PARALLAX VÍAS ── */
+  var tracks = document.querySelector('.hero-tracks');
+  if (tracks) {
+    window.addEventListener('scroll', function () {
+      tracks.style.transform = 'translateY(' + (window.scrollY * 0.22).toFixed(1) + 'px)';
+    }, { passive: true });
+  }
+
+  /* ── COUNTER ANIMATION ── */
+  function animateCounter(el) {
+    var target   = parseFloat(el.dataset.target) || 0;
+    var prefix   = el.dataset.prefix || '';
+    var suffix   = el.dataset.suffix || '';
+    var duration = 1400;
+    var startTs  = null;
+    function step(ts) {
+      if (!startTs) startTs = ts;
+      var progress = Math.min((ts - startTs) / duration, 1);
+      var eased    = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── INTERSECTION OBSERVER ── */
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.fade-up').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el    = entry.target;
+      var delay = el.dataset.delay ? parseFloat(el.dataset.delay) : 0;
+      el.style.transitionDelay = delay + 's';
+      el.classList.add('is-visible');
+      if (el.dataset.counter) animateCounter(el);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(function (el) {
+    io.observe(el);
+  });
+
+})();
+</script>
 
 </body>
 </html>
