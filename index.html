@@ -219,44 +219,6 @@
       background: rgba(255,255,255,0.04);
     }
 
-    /* Social proof strip */
-    .hero-proof {
-      margin-top: 64px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: var(--gray);
-    }
-
-    .hero-proof-dots {
-      display: flex;
-      gap: -4px;
-    }
-
-    .hero-proof-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid var(--black);
-      background: var(--red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: white;
-      margin-left: -8px;
-    }
-
-    .hero-proof-dot:first-child { margin-left: 0; }
-
-    .hero-proof-sep {
-      width: 1px;
-      height: 14px;
-      background: rgba(255,255,255,0.15);
-      margin: 0 8px;
-    }
 
     /* ── SHARED SECTION LAYOUT ── */
     .section {
@@ -690,27 +652,11 @@
       flex-shrink: 0;
     }
 
-    .calendar-placeholder {
+    .calendar-embed {
       background: #0E0E0E;
       border: 1px solid var(--border);
       border-radius: 16px;
-      min-height: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-
-    .calendar-placeholder svg {
-      opacity: 0.3;
-    }
-
-    .calendar-placeholder span {
-      font-size: 0.8rem;
-      opacity: 0.5;
+      overflow: hidden;
     }
 
     /* ── FOOTER ── */
@@ -916,7 +862,7 @@
     <li><a href="#que-hacemos">Servicios</a></li>
     <li><a href="#casos">Casos</a></li>
     <li><a href="#planes">Planes</a></li>
-    <li><a href="https://wa.me/5491100000000" class="nav-cta">Hablar con un asesor</a></li>
+    <li><a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="nav-cta">Hablar con un asesor</a></li>
   </ul>
 </nav>
 
@@ -935,7 +881,7 @@
   <p class="hero-sub">Resultados en días, no meses</p>
 
   <div class="hero-buttons">
-    <a href="https://wa.me/5491100000000" class="btn btn-whatsapp" target="_blank" rel="noopener">
+    <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="btn btn-whatsapp" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </svg>
@@ -953,15 +899,6 @@
     </a>
   </div>
 
-  <div class="hero-proof">
-    <div class="hero-proof-dots">
-      <div class="hero-proof-dot">MQ</div>
-      <div class="hero-proof-dot">QN</div>
-      <div class="hero-proof-dot">+</div>
-    </div>
-    <span class="hero-proof-sep"></span>
-    <span>+20 negocios ya automatizan con Via Studio</span>
-  </div>
 
 </section>
 
@@ -1061,17 +998,17 @@
 
       <div class="case-card">
         <div class="case-metric">+65%</div>
-        <div class="case-metric-label">apertura de emails</div>
+        <div class="case-metric-label">apertura emails · carritos del 22% al 38%</div>
         <div class="case-client">Mates La Plata</div>
-        <p class="case-desc">Automatizamos sus campañas de email marketing con segmentación inteligente por comportamiento de compra. Pasaron de newsletters genéricos a secuencias personalizadas que disparan según cada acción del cliente.</p>
+        <p class="case-desc">Previsualizador de grabado láser, emails de bienvenida automáticos con cupón, calendario de contenido mensual con IA.</p>
         <span class="case-tag">Email · IA · Tiendanube</span>
       </div>
 
       <div class="case-card">
-        <div class="case-metric">3+ hs</div>
-        <div class="case-metric-label">ahorradas por día</div>
+        <div class="case-metric">3+</div>
+        <div class="case-metric-label">hs/semana ahorradas</div>
         <div class="case-client">Tomy Medina</div>
-        <p class="case-desc">Implementamos un asistente con IA que responde consultas frecuentes en Instagram y WhatsApp de forma automática. El equipo dejó de responder los mismos mensajes 40 veces por día.</p>
+        <p class="case-desc">Bot de scripts para Stories, plan de 15 reels/mes basado en datos de rendimiento, análisis de formatos top.</p>
         <span class="case-tag">WhatsApp · Instagram · IA</span>
       </div>
 
@@ -1079,7 +1016,7 @@
         <div class="case-metric">-40%</div>
         <div class="case-metric-label">costo por lead</div>
         <div class="case-client">Quinton</div>
-        <p class="case-desc">Optimizamos sus campañas pagas con automatizaciones de seguimiento y nurturing. Cada lead que entra recibe una secuencia de contacto automática que lo empuja al cierre sin intervención humana.</p>
+        <p class="case-desc">Analista de tráfico IA, optimización automática de anuncios, dashboard de reportes inteligentes.</p>
         <span class="case-tag">Ads · CRM · Shopify</span>
       </div>
 
@@ -1152,7 +1089,7 @@
               Agente IA personalizado
             </li>
           </ul>
-          <a href="https://wa.me/5491100000000" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
+          <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
         </div>
       </div>
 
@@ -1267,7 +1204,7 @@
               Account manager dedicado
             </li>
           </ul>
-          <a href="https://wa.me/5491100000000" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
+          <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
         </div>
       </div>
 
@@ -1293,19 +1230,8 @@
         </ul>
       </div>
 
-      <div class="calendar-placeholder">
-        <!-- Reemplazar con embed de Calendly u otro proveedor -->
-        <!-- Ejemplo: <div class="calendly-inline-widget" data-url="https://calendly.com/viastudio" style="min-width:320px;height:480px;"></div> -->
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-          <line x1="8" y1="14" x2="8" y2="14"/>
-          <line x1="12" y1="14" x2="12" y2="14"/>
-          <line x1="16" y1="14" x2="16" y2="14"/>
-        </svg>
-        <span>Calendly embed va aquí</span>
+      <div class="calendar-embed">
+        <iframe src="https://cal.com/manuel-estevez-hbwqaj/20-min-meeting" style="width:100%;height:600px;border:none;"></iframe>
       </div>
 
     </div>
@@ -1334,7 +1260,7 @@
         <div class="footer-col">
           <h4>Contacto</h4>
           <ul>
-            <li><a href="https://wa.me/5491100000000" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" target="_blank" rel="noopener">WhatsApp</a></li>
             <li><a href="https://instagram.com/viastudio.ar" target="_blank" rel="noopener">@viastudio.ar</a></li>
             <li><a href="#agendar">Agendar reunión</a></li>
           </ul>
@@ -1343,7 +1269,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 Via Studio. Todos los derechos reservados.</span>
+      <span class="footer-copy">© 2026 Via Studio. Todos los derechos reservados.</span>
       <div class="footer-social">
         <!-- Instagram -->
         <a href="https://instagram.com/viastudio.ar" target="_blank" rel="noopener" aria-label="Instagram de Via Studio">
@@ -1354,7 +1280,7 @@
           </svg>
         </a>
         <!-- WhatsApp -->
-        <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" aria-label="WhatsApp de Via Studio">
+        <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" target="_blank" rel="noopener" aria-label="WhatsApp de Via Studio">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
@@ -1366,7 +1292,7 @@
 
 
 <!-- ── BOTÓN FLOTANTE WHATSAPP ── -->
-<a href="https://wa.me/5491100000000" class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+<a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
   </svg>
