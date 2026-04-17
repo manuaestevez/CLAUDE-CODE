@@ -1068,18 +1068,151 @@
         transform: none !important;
         transition: none !important;
       }
-      .particle,
-      .hero-tracks {
-        display: none;
-      }
-      .fab-whatsapp {
-        animation: none;
-      }
+      .particle { display: none; }
+      .fab-whatsapp { animation: none; }
+    }
+
+    /* ── GRAVEL TEXTURE ── */
+    body {
+      background-image:
+        radial-gradient(circle 1px at 7% 11%, #1e1e1e 100%, transparent 0),
+        radial-gradient(circle 1.5px at 23% 6%, #181818 100%, transparent 0),
+        radial-gradient(circle 1px at 41% 19%, #1c1c1c 100%, transparent 0),
+        radial-gradient(circle 2px at 64% 8%, #141414 100%, transparent 0),
+        radial-gradient(circle 1px at 83% 14%, #1a1a1a 100%, transparent 0),
+        radial-gradient(circle 1.5px at 96% 22%, #161616 100%, transparent 0),
+        radial-gradient(circle 1px at 15% 33%, #1e1e1e 100%, transparent 0),
+        radial-gradient(circle 2px at 37% 28%, #131313 100%, transparent 0),
+        radial-gradient(circle 1px at 58% 37%, #1b1b1b 100%, transparent 0),
+        radial-gradient(circle 1.5px at 79% 42%, #171717 100%, transparent 0),
+        radial-gradient(circle 1px at 91% 31%, #1c1c1c 100%, transparent 0),
+        radial-gradient(circle 2px at 4% 51%, #151515 100%, transparent 0),
+        radial-gradient(circle 1px at 28% 47%, #1d1d1d 100%, transparent 0),
+        radial-gradient(circle 1.5px at 49% 56%, #181818 100%, transparent 0),
+        radial-gradient(circle 1px at 72% 63%, #1a1a1a 100%, transparent 0),
+        radial-gradient(circle 2px at 86% 58%, #131313 100%, transparent 0),
+        radial-gradient(circle 1px at 11% 69%, #1e1e1e 100%, transparent 0),
+        radial-gradient(circle 1.5px at 35% 74%, #161616 100%, transparent 0),
+        radial-gradient(circle 2px at 55% 82%, #141414 100%, transparent 0),
+        radial-gradient(circle 1px at 77% 77%, #1c1c1c 100%, transparent 0),
+        radial-gradient(circle 1.5px at 93% 86%, #171717 100%, transparent 0),
+        radial-gradient(circle 1px at 19% 88%, #1b1b1b 100%, transparent 0),
+        radial-gradient(ellipse 3px 2px at 44% 94%, #111 100%, transparent 0),
+        radial-gradient(ellipse 2px 3px at 67% 91%, #0f0f0f 100%, transparent 0),
+        radial-gradient(ellipse 3px 2px at 88% 97%, #121212 100%, transparent 0);
+      background-size: 120px 100px;
+      background-repeat: repeat;
+    }
+
+    /* ── TRAIN TRACKS FIXED ── */
+    .track-rail {
+      position: fixed;
+      top: -20%;
+      width: 52px;
+      height: 140%;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 1;
+      will-change: transform;
+      background-image:
+        linear-gradient(to bottom, #333 0%, #333 100%),
+        linear-gradient(to bottom, #333 0%, #333 100%),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0, transparent 24px,
+          #2a2a2a 24px, #2a2a2a 26px,
+          transparent 26px, transparent 30px
+        );
+      background-size: 2px 100%, 2px 100%, 100% 30px;
+      background-position: 8px 0, 44px 0, 0 0;
+      background-repeat: no-repeat, no-repeat, repeat-y;
+    }
+    .track-rail--left  { left: 40px; }
+    .track-rail--right { right: 40px; }
+
+    /* ── LETTER STAGGER ── */
+    @keyframes letterIn {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      animation: letterIn 0.55s ease forwards;
+    }
+
+    /* ── NAV GLITCH ── */
+    @keyframes navGlitch {
+      0%, 100% { text-shadow: none; transform: none; }
+      20%  { text-shadow: 1px 0 0 var(--red); transform: translateX(-1px); }
+      40%  { text-shadow: -2px 0 0 var(--red); transform: translateX(1px); }
+      60%  { text-shadow: 1px 0 0 rgba(196,62,42,0.6); transform: translateX(-1px); }
+      80%  { text-shadow: none; transform: translateX(0); }
+    }
+    .nav-logo:hover {
+      animation: navGlitch 0.12s steps(1) 2;
+    }
+
+    /* ── PLAN CARD BORDER LEFT ── */
+    .plan-card {
+      border-left-width: 3px;
+      border-left-color: #2a2a2a;
+    }
+    .plan-card:hover {
+      border-left-color: var(--red) !important;
+    }
+    .plan-card.featured {
+      border-left-color: var(--red);
+    }
+
+    /* ── GLOBAL FLOATING PARTICLES ── */
+    .particle-global {
+      position: fixed;
+      border-radius: 50%;
+      background: #303030;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlobal linear infinite;
+    }
+    @keyframes floatGlobal {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      8%   { opacity: 0.65; }
+      92%  { opacity: 0.25; }
+      100% { transform: translateY(-70px) translateX(var(--pgx, 15px)); opacity: 0; }
+    }
+
+    /* ── HERO GLOW PULSE ── */
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.05; transform: translate(-50%, -50%) scale(1); }
+      50%       { opacity: 0.10; transform: translate(-50%, -50%) scale(1.08); }
+    }
+    .hero-glow {
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    /* ── SEPARADORES ── */
+    .divider-red {
+      height: 1px;
+      width: 60%;
+      margin: 40px auto;
+      background: rgba(196, 62, 42, 0.25);
+      display: block;
+    }
+
+    /* ── REDUCED MOTION (NUEVOS) ── */
+    @media (prefers-reduced-motion: reduce) {
+      .track-rail, .particle-global { display: none; }
+      .hero-glow  { animation: none; }
+      .letter     { animation: none; opacity: 1; }
+      .nav-logo   { animation: none !important; }
     }
 
   </style>
 </head>
 <body>
+
+<div class="track-rail track-rail--left" aria-hidden="true"></div>
+<div class="track-rail track-rail--right" aria-hidden="true"></div>
 
 <!-- ── NAVEGACIÓN ── -->
 <nav>
@@ -1096,7 +1229,6 @@
 <section id="hero">
 
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-tracks" aria-hidden="true"></div>
   <div class="particles-wrap" aria-hidden="true"></div>
 
   <span class="hero-eyebrow">Agencia de Automatización con IA</span>
@@ -1508,7 +1640,23 @@
 (function () {
   'use strict';
 
-  /* ── PARTÍCULAS ── */
+  /* ── LETTER STAGGER (HERO TITLE) ── */
+  var heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+    var letters = '';
+    var delay = 0;
+    'Via'.split('').forEach(function(ch) {
+      letters += '<span class="letter" style="animation-delay:' + (delay++ * 0.05).toFixed(2) + 's">' + ch + '</span>';
+    });
+    letters += '<span style="color:var(--red)">';
+    'Studio'.split('').forEach(function(ch) {
+      letters += '<span class="letter" style="animation-delay:' + (delay++ * 0.05).toFixed(2) + 's">' + ch + '</span>';
+    });
+    letters += '</span>';
+    heroTitle.innerHTML = letters;
+  }
+
+  /* ── PARTÍCULAS HERO ── */
   var wrap = document.querySelector('.particles-wrap');
   if (wrap) {
     for (var i = 0; i < 16; i++) {
@@ -1529,11 +1677,32 @@
     }
   }
 
+  /* ── PARTÍCULAS GLOBALES FLOTANTES ── */
+  for (var j = 0; j < 15; j++) {
+    var pg = document.createElement('div');
+    pg.className = 'particle-global';
+    var pgSize = (1 + Math.random() * 1.2).toFixed(1);
+    var pgTx   = (-25 + Math.random() * 50).toFixed(0);
+    var pgDur  = (15 + Math.random() * 10).toFixed(1);
+    var pgDel  = (-Math.random() * 20).toFixed(1);
+    pg.style.cssText =
+      'left:'  + (3  + Math.random() * 94).toFixed(0) + '%;' +
+      'top:'   + (5  + Math.random() * 88).toFixed(0) + '%;' +
+      'width:' + pgSize + 'px;height:' + pgSize + 'px;' +
+      '--pgx:' + pgTx   + 'px;' +
+      'animation-duration:' + pgDur + 's;' +
+      'animation-delay:'    + pgDel + 's;';
+    document.body.appendChild(pg);
+  }
+
   /* ── PARALLAX VÍAS ── */
-  var tracks = document.querySelector('.hero-tracks');
-  if (tracks) {
+  var rails = document.querySelectorAll('.track-rail');
+  if (rails.length) {
     window.addEventListener('scroll', function () {
-      tracks.style.transform = 'translateY(' + (window.scrollY * 0.22).toFixed(1) + 'px)';
+      var ty = 'translateY(' + (window.scrollY * 0.3).toFixed(1) + 'px)';
+      for (var k = 0; k < rails.length; k++) {
+        rails[k].style.transform = ty;
+      }
     }, { passive: true });
   }
 
@@ -1542,7 +1711,7 @@
     var target   = parseFloat(el.dataset.target) || 0;
     var prefix   = el.dataset.prefix || '';
     var suffix   = el.dataset.suffix || '';
-    var duration = 1400;
+    var duration = 2000;
     var startTs  = null;
     function step(ts) {
       if (!startTs) startTs = ts;
