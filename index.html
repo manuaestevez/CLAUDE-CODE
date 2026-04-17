@@ -3,409 +3,1755 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auditoría Web — mateslaplata.com.ar</title>
+  <title>Via Studio — Automatización con IA para tu negocio</title>
+  <meta name="description" content="Automatizamos tu negocio con IA para que vendas más, ahorres tiempo y trabajes menos. Resultados en días, no meses.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black:   #0A0A0A;
+      --red:     #C43E2A;
+      --red-dark:#A33220;
+      --white:   #FFFFFF;
+      --gray:    #999999;
+      --border:  rgba(255,255,255,0.08);
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f5f5;
-      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-      color: white;
-      padding: 48px 32px;
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 0.88rem !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-dark) !important;
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-    }
-
-    header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
-    header p { color: #a0aec0; font-size: 1rem; }
-    header .url { color: #63b3ed; font-weight: 600; font-size: 1.1rem; margin-top: 8px; }
-
-    .container { max-width: 960px; margin: 0 auto; padding: 32px 16px; }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-
-    .summary-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
-
-    .summary-card .badge { font-size: 2rem; display: block; margin-bottom: 8px; }
-    .summary-card .label { font-size: 0.8rem; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; }
-    .summary-card .count { font-size: 1.6rem; font-weight: 700; }
-    .count.red { color: #e53e3e; }
-    .count.orange { color: #dd6b20; }
-    .count.yellow { color: #d69e2e; }
-    .count.green { color: #38a169; }
-
-    .section {
-      background: white;
-      border-radius: 12px;
-      margin-bottom: 24px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      padding: 120px 24px 80px;
+      position: relative;
       overflow: hidden;
     }
 
-    .section-header {
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid #e2e8f0;
+    /* Subtle radial glow behind headline */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(196, 62, 42, 0.15) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .section-header.critical { background: #fff5f5; border-left: 4px solid #e53e3e; }
-    .section-header.high     { background: #fffaf0; border-left: 4px solid #dd6b20; }
-    .section-header.medium   { background: #fffff0; border-left: 4px solid #d69e2e; }
-    .section-header.good     { background: #f0fff4; border-left: 4px solid #38a169; }
-
-    .section-header h2 { font-size: 1.1rem; font-weight: 700; }
-    .section-header .pill {
-      margin-left: auto;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      color: var(--red);
+      margin-bottom: 24px;
     }
 
-    .pill.critical { background: #fed7d7; color: #c53030; }
-    .pill.high     { background: #feebc8; color: #c05621; }
-    .pill.medium   { background: #fefcbf; color: #b7791f; }
-    .pill.good     { background: #c6f6d5; color: #276749; }
-
-    .section-body { padding: 20px 24px; }
-
-    .issue {
-      padding: 16px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      border: 1px solid #e2e8f0;
-    }
-
-    .issue:last-child { margin-bottom: 0; }
-    .issue h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
-    .issue p { font-size: 0.88rem; color: #4a5568; margin-bottom: 8px; }
-    .issue p:last-child { margin-bottom: 0; }
-
-    .issue .action {
-      background: #ebf8ff;
-      border-left: 3px solid #3182ce;
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: #2b6cb0;
-    }
-
-    .issue.critical-item { background: #fff5f5; border-color: #fed7d7; }
-    .issue.high-item     { background: #fffaf0; border-color: #feebc8; }
-    .issue.medium-item   { background: #fffff0; border-color: #fefcbf; }
-
-    .good-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 10px;
-    }
-
-    .good-list li {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      background: #f0fff4;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #c6f6d5;
-    }
-
-    .good-list li::before {
-      content: "✓";
-      color: #38a169;
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
       font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+
+    .hero-title span {
+      color: var(--red);
+    }
+
+    .hero-headline {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.25;
+      max-width: 780px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
       font-size: 1rem;
+      font-weight: 500;
+      color: var(--gray);
+      margin-bottom: 48px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 15px 28px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5a;
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-whatsapp svg,
+    .btn-agendar svg {
       flex-shrink: 0;
     }
 
-    table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+    .btn-agendar {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+    }
 
-    thead th {
-      background: #edf2f7;
-      padding: 10px 14px;
-      text-align: left;
-      font-weight: 700;
-      color: #4a5568;
-      font-size: 0.8rem;
+    .btn-agendar:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255,255,255,0.04);
+    }
+
+
+    /* ── SHARED SECTION LAYOUT ── */
+    .section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      color: var(--red);
+      display: block;
+      margin-bottom: 14px;
     }
 
-    tbody td {
-      padding: 10px 14px;
-      border-bottom: 1px solid #e2e8f0;
-      vertical-align: top;
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
 
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover { background: #f7fafc; }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 560px;
+      line-height: 1.7;
+    }
 
-    .plan-grid {
+    .section-header {
+      margin-bottom: 64px;
+    }
+
+    /* ── QUÉ HACEMOS ── */
+    #que-hacemos {
+      border-top: 1px solid var(--border);
+    }
+
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--black);
+      padding: 44px 36px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .service-card:hover {
+      background: #111111;
+    }
+
+    .service-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: rgba(196, 62, 42, 0.12);
+      line-height: 1;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(196, 62, 42, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--red);
+    }
+
+    .service-card h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── PRINCIPIOS ── */
+    #principios {
+      background: #0E0E0E;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .principle {
+      padding: 0;
+    }
+
+    .principle-bar {
+      width: 36px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .principle h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .principle p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── CASOS DE ÉXITO ── */
+    #casos {
+      border-top: 1px solid var(--border);
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .case-card {
+      background: #0E0E0E;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .case-card:hover {
+      border-color: rgba(196, 62, 42, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .case-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .case-metric {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .case-metric-label {
+      font-size: 0.8rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .case-client {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .case-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    .case-tag {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid rgba(196, 62, 42, 0.3);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* ── PLANES ── */
+    #planes {
+      background: #0E0E0E;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .plan-card {
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(196, 62, 42, 0.35);
+    }
+
+    .plan-card.featured {
+      border-color: var(--red);
+      position: relative;
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .plan-head {
+      padding: 32px 28px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .plan-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .plan-card.featured .plan-name {
+      color: var(--red);
+    }
+
+    .plan-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .plan-price sup {
+      font-size: 1.2rem;
+      font-weight: 700;
+      vertical-align: super;
+      margin-right: 2px;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .plan-price-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .plan-price-range {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 6px;
+    }
+
+    .plan-body {
+      padding: 28px;
+    }
+
+    .plan-section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .plan-section-label:first-child { margin-top: 0; }
+
+    .plan-section-label--no {
+      color: #555;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .plans-footnote {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.78rem;
+      color: #555;
+      letter-spacing: 0.02em;
+    }
+
+    .plan-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .plan-features li .check {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      color: var(--red);
+    }
+
+    .plan-features li .cross {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      color: #444;
+    }
+
+    .plan-features li.disabled {
+      color: #444;
+    }
+
+    .plan-cta {
+      display: block;
+      text-align: center;
+      padding: 13px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .plan-cta-outline {
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+    }
+
+    .plan-cta-outline:hover {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .plan-cta-solid {
+      background: var(--red);
+      color: var(--white);
+      border: 1.5px solid var(--red);
+    }
+
+    .plan-cta-solid:hover {
+      background: var(--red-dark);
+    }
+
+    /* ── AGENDAR ── */
+    #agendar {
+      border-top: 1px solid var(--border);
+    }
+
+    .agendar-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .agendar-text .section-title {
+      margin-bottom: 20px;
+    }
+
+    .agendar-text p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .agendar-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .agendar-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .agendar-bullets li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .calendar-embed {
+      background: #0E0E0E;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border);
+      padding: 56px 24px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-brand span {
+      color: var(--red);
+    }
+
+    .footer-tagline {
+      font-size: 0.83rem;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: 0.875rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .footer-social {
+      display: flex;
       gap: 16px;
     }
 
-    .plan-week { border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
 
-    .plan-week-header {
-      padding: 12px 16px;
-      font-weight: 700;
-      font-size: 0.9rem;
+    .footer-social a:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: var(--white);
+    }
+
+    /* ── FLOATING WHATSAPP ── */
+    .fab-whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
       color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .week-1 .plan-week-header { background: #e53e3e; }
-    .week-2 .plan-week-header { background: #dd6b20; }
-    .week-3 .plan-week-header { background: #d69e2e; }
-
-    .plan-week ol { padding: 14px 16px 14px 30px; font-size: 0.87rem; color: #4a5568; }
-    .plan-week ol li { margin-bottom: 6px; }
-    .plan-week ol li:last-child { margin-bottom: 0; }
-
-    footer { text-align: center; padding: 32px; color: #718096; font-size: 0.82rem; }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.4rem; }
-      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .fab-whatsapp:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
     }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .services-grid,
+      .principles-grid,
+      .cases-grid,
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .agendar-wrap {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      #hero {
+        padding: 100px 20px 60px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+
+      .section {
+        padding: 72px 20px;
+      }
+
+      .service-card {
+        padding: 32px 24px;
+      }
+    }
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'200'%20height%3D'200'%3E%3Cfilter%20id%3D'g'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.8'%20numOctaves%3D'4'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20type%3D'saturate'%20values%3D'0'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'200'%20height%3D'200'%20filter%3D'url(%23g)'%2F%3E%3C%2Fsvg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* Noise alternada más densa en secciones oscuras */
+    #principios::after,
+    #planes::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'150'%20height%3D'150'%3E%3Cfilter%20id%3D'g'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.9'%20numOctaves%3D'4'%20stitchTiles%3D'stitch'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'150'%20height%3D'150'%20filter%3D'url(%23g)'%2F%3E%3C%2Fsvg%3E");
+      background-size: 150px 150px;
+    }
+
+    #principios,
+    #planes {
+      position: relative;
+    }
+
+    /* ── HERO: GLOW + TRACKS + PARTICLES ── */
+    .hero-glow {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(196,62,42,0.06) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particles-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: #2e2e2e;
+      opacity: 0;
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      12%  { opacity: 0.9; }
+      88%  { opacity: 0.35; }
+      100% { transform: translateY(-180px) translateX(var(--tx, 20px)); opacity: 0; }
+    }
+
+    /* ── SEPARADORES ROJOS ── */
+    .divider-red {
+      height: 1px;
+      background: linear-gradient(to right,
+        transparent 0%,
+        rgba(196,62,42,0.3) 15%,
+        rgba(196,62,42,0.3) 85%,
+        transparent 100%
+      );
+    }
+
+    /* ── NAV: underline animado ── */
+    .nav-links a:not(.nav-cta) {
+      position: relative;
+    }
+
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--white);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:not(.nav-cta):hover::after {
+      width: 100%;
+    }
+
+    /* ── BOTONES: microinteracciones ── */
+    .btn {
+      transition: transform 0.18s ease, background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.03) translateY(-2px);
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5a;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.35), 0 0 0 1px rgba(37,211,102,0.15);
+    }
+
+    .btn-agendar:hover {
+      border-color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 8px 24px rgba(196,62,42,0.1);
+    }
+
+    /* ── CASE CARDS: hover mejorado ── */
+    .case-card {
+      transition: border-color 0.2s, transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .case-card:hover {
+      border-color: rgba(196,62,42,0.45);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    }
+
+    /* ── FAB WHATSAPP: pulse ── */
+    @keyframes fabPulse {
+      0%, 78%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      83%            { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0.09); }
+      92%            { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 20px rgba(37,211,102,0.03); }
+    }
+
+    .fab-whatsapp {
+      animation: fabPulse 5s ease infinite;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .particle { display: none; }
+      .fab-whatsapp { animation: none; }
+    }
+
+    /* ── GRAVEL TEXTURE ── */
+    body {
+      background-color: #0a0a0a;
+      background-image:
+        /* Piedras medianas */
+        radial-gradient(ellipse 5px 3px at 9%  7%,  #131313 0%, transparent 100%),
+        radial-gradient(ellipse 3px 4px at 23% 19%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 4px 2px at 41% 11%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 2px 5px at 58% 23%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 5px 3px at 74% 6%,  #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 3px 4px at 88% 17%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 4px 3px at 14% 34%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 6px 3px at 32% 42%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 2px at 49% 36%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 3px 5px at 67% 48%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 4px 3px at 82% 39%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 2px 4px at 95% 31%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 4px at 7%  56%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 3px 2px at 26% 61%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 6px 3px at 44% 54%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 2px 5px at 63% 66%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 3px at 78% 57%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 3px 4px at 91% 72%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 4px 2px at 17% 79%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 6px 4px at 35% 86%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 3px 5px at 53% 91%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 3px at 71% 83%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 4px 3px at 86% 96%, #111111 0%, transparent 100%),
+        /* Gravel fino */
+        radial-gradient(circle 1px at 4%  28%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1px at 19% 14%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(circle 1px at 37% 3%,  #111111 0%, transparent 100%),
+        radial-gradient(circle 1px at 55% 44%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1px at 73% 59%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(circle 1px at 91% 74%, #111111 0%, transparent 100%),
+        radial-gradient(circle 1px at 11% 89%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 47% 3%,  #0f0f0f 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 83% 43%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 29% 68%, #111111 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 65% 93%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(circle 1px at 52% 77%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1px at 7%  45%, #0f0f0f 0%, transparent 100%);
+      background-size: 120px 80px;
+      background-repeat: repeat;
+    }
+
+    /* ── TRAIN TRACKS SVG FIXED ── */
+    .track-rail {
+      position: fixed;
+      top: 0;
+      width: 52px;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 1;
+      will-change: transform;
+    }
+    .track-rail--left  { left: 20px; }
+    .track-rail--right { right: 20px; }
+    @media (max-width: 768px) {
+      .track-rail { display: none; }
+    }
+
+    /* ── LETTER STAGGER ── */
+    @keyframes letterIn {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      animation: letterIn 0.55s ease forwards;
+    }
+
+    /* ── NAV GLITCH ── */
+    @keyframes navGlitch {
+      0%, 100% { text-shadow: none; transform: none; }
+      20%  { text-shadow: 1px 0 0 var(--red); transform: translateX(-1px); }
+      40%  { text-shadow: -2px 0 0 var(--red); transform: translateX(1px); }
+      60%  { text-shadow: 1px 0 0 rgba(196,62,42,0.6); transform: translateX(-1px); }
+      80%  { text-shadow: none; transform: translateX(0); }
+    }
+    .nav-logo:hover {
+      animation: navGlitch 0.12s steps(1) 2;
+    }
+
+    /* ── PLAN CARD BORDER LEFT ── */
+    .plan-card {
+      border-left-width: 3px;
+      border-left-color: #2a2a2a;
+    }
+    .plan-card:hover {
+      border-left-color: var(--red) !important;
+    }
+    .plan-card.featured {
+      border-left-color: var(--red);
+    }
+
+    /* ── GLOBAL FLOATING PARTICLES ── */
+    .particle-global {
+      position: fixed;
+      border-radius: 50%;
+      background: #303030;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlobal linear infinite;
+    }
+    @keyframes floatGlobal {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      8%   { opacity: 0.65; }
+      92%  { opacity: 0.25; }
+      100% { transform: translateY(-70px) translateX(var(--pgx, 15px)); opacity: 0; }
+    }
+
+    /* ── HERO GLOW PULSE ── */
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.05; transform: translate(-50%, -50%) scale(1); }
+      50%       { opacity: 0.10; transform: translate(-50%, -50%) scale(1.08); }
+    }
+    .hero-glow {
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    /* ── SEPARADORES ── */
+    .divider-red {
+      height: 1px;
+      width: 60%;
+      margin: 40px auto;
+      background: rgba(196, 62, 42, 0.25);
+      display: block;
+    }
+
+    /* ── REDUCED MOTION (NUEVOS) ── */
+    @media (prefers-reduced-motion: reduce) {
+      .track-rail, .particle-global { display: none; }
+      .hero-glow  { animation: none; }
+      .letter     { animation: none; opacity: 1; }
+      .nav-logo   { animation: none !important; }
+    }
+
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Auditoría Web Completa</h1>
-  <p class="url">mateslaplata.com.ar</p>
-  <p>Plataforma: Tiendanube &nbsp;·&nbsp; Fecha: 26 de marzo de 2026</p>
-</header>
-
-<div class="container">
-
-  <div class="summary-grid">
-    <div class="summary-card">
-      <span class="badge">🔴</span>
-      <div class="count red">2</div>
-      <div class="label">Crítico</div>
-    </div>
-    <div class="summary-card">
-      <span class="badge">🟠</span>
-      <div class="count orange">3</div>
-      <div class="label">Alto</div>
-    </div>
-    <div class="summary-card">
-      <span class="badge">🟡</span>
-      <div class="count yellow">5</div>
-      <div class="label">Medio</div>
-    </div>
-    <div class="summary-card">
-      <span class="badge">🟢</span>
-      <div class="count green">7</div>
-      <div class="label">Correcto</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header critical">
-      <span>🔴</span>
-      <h2>Problemas Críticos</h2>
-      <span class="pill critical">Acción inmediata</span>
-    </div>
-    <div class="section-body">
-
-      <div class="issue critical-item">
-        <h3>1. Googlebot podría estar bloqueado (HTTP 403)</h3>
-        <p>El sitio responde con <strong>403 Forbidden</strong> a bots y crawlers. Si Googlebot también recibe este error, tu tienda <strong>no se indexa en Google</strong> y no recibirás tráfico orgánico.</p>
-        <div class="action">
-          <strong>Acción:</strong> Entrá a Google Search Console → Cobertura → verificá errores de rastreo. Revisá las reglas de tu CDN/WAF (Cloudflare u otro) para asegurarte de que Googlebot y Bingbot estén en la lista blanca.
-        </div>
-      </div>
-
-      <div class="issue critical-item">
-        <h3>2. Dominio duplicado — Dos URLs indexadas simultáneamente</h3>
-        <p>Tu tienda existe en dos dominios al mismo tiempo: <strong>mateslaplata.com.ar</strong> (correcto) y <strong>mateslaplata.mitiendanube.com</strong> (duplicado). Google ve el mismo contenido dos veces, divide el PageRank entre ambos dominios y diluye todo tu posicionamiento SEO.</p>
-        <div class="action">
-          <strong>Acción:</strong> En el panel de Tiendanube → Configuraciones → Dominio → configurar redirect 301 de <em>mitiendanube.com</em> hacia <em>mateslaplata.com.ar</em>. Esto consolida toda la autoridad de dominio en una sola URL.
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header high">
-      <span>🟠</span>
-      <h2>Problemas de Alta Prioridad</h2>
-      <span class="pill high">Esta semana</span>
-    </div>
-    <div class="section-body">
-
-      <div class="issue high-item">
-        <h3>3. Sin sistema de reseñas de clientes</h3>
-        <p>No se detectó ningún sistema de valoraciones. Sin reseñas, Google no puede mostrar <strong>estrellas en los resultados de búsqueda</strong> (rich snippets). Las estrellas aumentan el CTR entre un 15% y 35%, y son el factor #1 de conversión en e-commerce.</p>
-        <div class="action">
-          <strong>Acción:</strong> Instalar una app de reseñas desde el App Store de Tiendanube (opciones: "Reseñas" nativa, Trustpilot, u otras). Una vez activa, habilitar el schema <code>AggregateRating</code> en los productos.
-        </div>
-      </div>
-
-      <div class="issue high-item">
-        <h3>4. jQuery 1.11.1 en uso (versión del año 2014)</h3>
-        <p>La versión de jQuery detectada en el tema tiene <strong>vulnerabilidades de seguridad conocidas</strong> (CVEs documentados) y es considerablemente más pesada que versiones modernas. jQuery 3.7+ es la versión actual.</p>
-        <div class="action">
-          <strong>Acción:</strong> Verificar si Tiendanube provee una actualización del tema. Si el tema es personalizado, actualizar jQuery a la versión 3.7 o migrar las dependencias a JavaScript vanilla donde sea posible.
-        </div>
-      </div>
-
-      <div class="issue high-item">
-        <h3>5. Sin banner de consentimiento de cookies</h3>
-        <p>Facebook Pixel y Google Analytics están activos pero no se detectó ningún mecanismo de consentimiento. Esto representa un <strong>riesgo legal</strong> bajo la Ley de Protección de Datos argentina (PDPA) y el GDPR para clientes del exterior.</p>
-        <div class="action">
-          <strong>Acción:</strong> Instalar una app de cookie consent desde el App Store de Tiendanube o implementar una solución como CookieYes o Cookiebot.
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header medium">
-      <span>🟡</span>
-      <h2>Mejoras de Prioridad Media</h2>
-      <span class="pill medium">Próximas 2 semanas</span>
-    </div>
-    <div class="section-body">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Problema</th>
-            <th>Impacto</th>
-            <th>Acción recomendada</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>6</td>
-            <td><strong>Meta description no optimizada</strong><br>No se detectó una meta description bien redactada con keywords y CTA.</td>
-            <td>Menos clics desde Google (menor CTR)</td>
-            <td>Escribir una de 140–160 caracteres por tipo de página. Ejemplo: <em>"Comprá mates artesanales premium con virola de alpaca. Envío gratis desde $70.000. Cuotas y efectivo. ¡Desde 2020!"</em></td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><strong>Sin schema BreadcrumbList</strong><br>Las URLs tienen jerarquía clara (<code>/mates/madera/</code>) pero Google no muestra la miga de pan en los resultados.</td>
-            <td>Peor apariencia en SERPs</td>
-            <td>Agregar JSON-LD <code>BreadcrumbList</code> en páginas de categoría y producto.</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><strong>Sin schema Organization</strong><br>La marca no tiene datos estructurados que la identifiquen en Google (logo, redes, contacto).</td>
-            <td>Menor autoridad de marca en Google</td>
-            <td>Agregar JSON-LD <code>Organization</code> con <code>name</code>, <code>logo</code>, <code>url</code>, <code>sameAs</code> (Instagram <em>@mates.laplata</em>), y <code>contactPoint</code> (WhatsApp).</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td><strong>Google Fonts posiblemente bloqueante</strong><br>Si las fuentes se cargan en el <code>&lt;head&gt;</code> sin <code>display=swap</code>, el texto es invisible hasta que carga la fuente (FOIT).</td>
-            <td>Penaliza el LCP (velocidad percibida)</td>
-            <td>Agregar <code>&amp;display=swap</code> a todas las URLs de Google Fonts y añadir <code>rel="preconnect"</code> para <em>fonts.gstatic.com</em>.</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td><strong>Alt text en banners e imágenes hero probablemente vacío</strong><br>Las imágenes decorativas suelen tener <code>alt=""</code> en los temas de Tiendanube.</td>
-            <td>SEO de imágenes + accesibilidad</td>
-            <td>Completar el campo alt en cada imagen desde el panel de Tiendanube con texto descriptivo.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header good">
-      <span>🟢</span>
-      <h2>Lo que ya está bien</h2>
-      <span class="pill good">Sin cambios necesarios</span>
-    </div>
-    <div class="section-body">
-      <ul class="good-list">
-        <li>HTTPS activo y certificado SSL válido</li>
-        <li>Diseño Mobile First (Bootstrap 4)</li>
-        <li>Lazy loading de imágenes con Lazysizes</li>
-        <li>CSS y JS minificados por Tiendanube CDN</li>
-        <li>Semántica HTML5 (header, main, footer, nav)</li>
-        <li>Señales de confianza visibles (envío gratis, devoluciones, garantía, cuotas)</li>
-        <li>WhatsApp flotante integrado (clave en Argentina)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header" style="background:#f7fafc; border-left: 4px solid #4a5568;">
-      <span>📅</span>
-      <h2>Plan de Acción — 3 Semanas</h2>
-    </div>
-    <div class="section-body">
-      <div class="plan-grid">
-
-        <div class="plan-week week-1">
-          <div class="plan-week-header">Semana 1 — Sin código</div>
-          <ol>
-            <li>Verificar rastreo en Google Search Console</li>
-            <li>Enviar sitemap: <em>/sitemap.xml</em></li>
-            <li>Configurar redirect 301 del subdominio mitiendanube</li>
-            <li>Instalar app de reseñas de clientes</li>
-          </ol>
-        </div>
-
-        <div class="plan-week week-2">
-          <div class="plan-week-header">Semana 2 — SEO On-Page</div>
-          <ol>
-            <li>Reescribir meta descriptions (home, categorías, top productos)</li>
-            <li>Agregar schema Organization en el homepage</li>
-            <li>Agregar BreadcrumbList en categorías y productos</li>
-            <li>Completar alt text en imágenes de banners</li>
-          </ol>
-        </div>
-
-        <div class="plan-week week-3">
-          <div class="plan-week-header">Semana 3 — Performance y Legal</div>
-          <ol>
-            <li>Instalar banner de consentimiento de cookies</li>
-            <li>Optimizar carga de Google Fonts (display=swap)</li>
-            <li>Revisar y actualizar jQuery en el tema</li>
-            <li>Auditar con Lighthouse y ajustar Core Web Vitals</li>
-          </ol>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
+<div class="track-rail track-rail--left" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="52" height="10000">
+    <defs>
+      <pattern id="tp-l" x="0" y="0" width="52" height="28" patternUnits="userSpaceOnUse">
+        <rect x="10" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="39" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="8"  y="13" width="36" height="2" fill="#222222"/>
+      </pattern>
+    </defs>
+    <rect width="52" height="10000" fill="url(#tp-l)"/>
+  </svg>
+</div>
+<div class="track-rail track-rail--right" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="52" height="10000">
+    <defs>
+      <pattern id="tp-r" x="0" y="0" width="52" height="28" patternUnits="userSpaceOnUse">
+        <rect x="10" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="39" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="8"  y="13" width="36" height="2" fill="#222222"/>
+      </pattern>
+    </defs>
+    <rect width="52" height="10000" fill="url(#tp-r)"/>
+  </svg>
 </div>
 
+<!-- ── NAVEGACIÓN ── -->
+<nav>
+  <a href="#" class="nav-logo">VIA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#que-hacemos">Servicios</a></li>
+    <li><a href="#casos">Casos</a></li>
+    <li><a href="#planes">Planes</a></li>
+    <li><a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="nav-cta">Hablar con un asesor</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="particles-wrap" aria-hidden="true"></div>
+
+  <span class="hero-eyebrow">Agencia de Automatización con IA</span>
+
+  <h1 class="hero-title">Via<span>Studio</span></h1>
+
+  <p class="hero-headline">
+    Automatizamos tu negocio con IA para que vendas más,<br>
+    ahorres tiempo y trabajes menos
+  </p>
+
+  <p class="hero-sub">Resultados en días, no meses</p>
+
+  <div class="hero-buttons">
+    <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="btn btn-whatsapp" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      WhatsApp
+    </a>
+
+    <a href="#agendar" class="btn btn-agendar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Agendar reunión
+    </a>
+  </div>
+
+
+</section>
+
+<div class="divider-red"></div>
+
+<!-- ── QUÉ HACEMOS ── -->
+<section id="que-hacemos" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-label">Servicios</span>
+      <h2 class="section-title">Qué hacemos</h2>
+      <p class="section-sub">Un proceso claro en tres pasos para transformar tu negocio con IA sin vueltas.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card fade-up" data-delay="0">
+        <div class="service-number">01</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h3>Encontrar oportunidades</h3>
+        <p>Auditamos tu negocio en profundidad: flujos de trabajo, canales de venta y atención al cliente. Detectamos exactamente dónde la IA puede generar más impacto en menos tiempo.</p>
+      </div>
+
+      <div class="service-card fade-up" data-delay="0.13">
+        <div class="service-number">02</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Diseñar rápido</h3>
+        <p>Prototipamos soluciones en días usando herramientas no-code y low-code. Sin esperas. Validamos resultados reales antes de escalar para que cada peso invertido tenga retorno.</p>
+      </div>
+
+      <div class="service-card fade-up" data-delay="0.26">
+        <div class="service-number">03</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Construir y operar</h3>
+        <p>Implementamos, integramos con tus herramientas actuales y operamos el sistema para que funcione solo. Vos te enfocás en el negocio; nosotros nos encargamos del resto.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider-red"></div>
+
+<!-- ── PRINCIPIOS ── -->
+<section id="principios" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-label">Cómo trabajamos</span>
+      <h2 class="section-title">Principios</h2>
+    </div>
+
+    <div class="principles-grid">
+
+      <div class="principle fade-up" data-delay="0">
+        <div class="principle-bar"></div>
+        <h3>Rápido</h3>
+        <p>No creemos en proyectos de 6 meses. El primer resultado lo ves en la primera semana. Iteramos rápido, fallamos barato y escalamos lo que funciona.</p>
+      </div>
+
+      <div class="principle fade-up" data-delay="0.13">
+        <div class="principle-bar"></div>
+        <h3>Integrado</h3>
+        <p>Nos conectamos a las herramientas que ya usás: WhatsApp, Instagram, Shopify, Tiendanube, Gmail, Google Sheets y más. Sin migraciones traumáticas.</p>
+      </div>
+
+      <div class="principle fade-up" data-delay="0.26">
+        <div class="principle-bar"></div>
+        <h3>Resultados</h3>
+        <p>Solo implementamos lo que genera ROI medible. Si no podemos mostrarte el número, no lo hacemos. Métricas reales desde el día uno.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider-red"></div>
+
+<!-- ── CASOS DE ÉXITO ── -->
+<section id="casos" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-label">Resultados reales</span>
+      <h2 class="section-title">Casos de éxito</h2>
+      <p class="section-sub">Negocios que automatizaron con Via Studio y hoy trabajan diferente.</p>
+    </div>
+
+    <div class="cases-grid">
+
+      <div class="case-card fade-up" data-delay="0">
+        <div class="case-metric fade-up" data-counter="true" data-target="65" data-prefix="+" data-suffix="%" data-delay="0.1">+65%</div>
+        <div class="case-metric-label">apertura emails · carritos del 22% al 38%</div>
+        <div class="case-client">Mates La Plata</div>
+        <p class="case-desc">Previsualizador de grabado láser, emails de bienvenida automáticos con cupón, calendario de contenido mensual con IA.</p>
+        <span class="case-tag">Email · IA · Tiendanube</span>
+      </div>
+
+      <div class="case-card fade-up" data-delay="0.12">
+        <div class="case-metric fade-up" data-counter="true" data-target="3" data-prefix="" data-suffix="+" data-delay="0.22">3+</div>
+        <div class="case-metric-label">hs/semana ahorradas</div>
+        <div class="case-client">Tomy Medina</div>
+        <p class="case-desc">Bot de scripts para Stories, plan de 15 reels/mes basado en datos de rendimiento, análisis de formatos top.</p>
+        <span class="case-tag">WhatsApp · Instagram · IA</span>
+      </div>
+
+      <div class="case-card fade-up" data-delay="0.24">
+        <div class="case-metric fade-up" data-counter="true" data-target="40" data-prefix="-" data-suffix="%" data-delay="0.34">-40%</div>
+        <div class="case-metric-label">costo por lead</div>
+        <div class="case-client">Quinton</div>
+        <p class="case-desc">Analista de tráfico IA, optimización automática de anuncios, dashboard de reportes inteligentes.</p>
+        <span class="case-tag">Ads · CRM · Shopify</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider-red"></div>
+
+<!-- ── PLANES ── -->
+<section id="planes" class="section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-label">Precios</span>
+      <h2 class="section-title">Planes</h2>
+      <p class="section-sub">Elegí el plan que se adapta a tu etapa. Todos incluyen onboarding y soporte continuo.</p>
+    </div>
+
+    <div class="plans-grid">
+
+      <!-- INICIAL -->
+      <div class="plan-card fade-up" data-delay="0">
+        <div class="plan-head">
+          <div class="plan-name">Inicial</div>
+          <div class="plan-price-subtitle">"Automatizá lo básico"</div>
+          <div class="plan-price"><sup>USD</sup>200<span style="font-size:1.4rem;color:var(--gray)">–350</span></div>
+          <div class="plan-price-range">por mes</div>
+        </div>
+        <div class="plan-body">
+          <p class="plan-section-label">Incluye</p>
+          <ul class="plan-features">
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Hasta 3 automatizaciones o implementaciones por mes
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              1 reunión mensual de 30 min (revisión + planificación)
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Soporte por WhatsApp (respuesta en 24hs hábiles)
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Reporte mensual de lo implementado
+            </li>
+          </ul>
+          <p class="plan-section-label plan-section-label--no">No incluye</p>
+          <ul class="plan-features">
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Creación de contenido
+            </li>
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Desarrollo custom (bots, apps)
+            </li>
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Capacitación de equipo
+            </li>
+          </ul>
+          <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
+        </div>
+      </div>
+
+      <!-- CRECIMIENTO -->
+      <div class="plan-card featured fade-up" data-delay="0.1">
+        <div class="plan-badge">Más elegido</div>
+        <div class="plan-head">
+          <div class="plan-name">Crecimiento</div>
+          <div class="plan-price-subtitle">"Tu equipo de IA"</div>
+          <div class="plan-price"><sup>USD</sup>500<span style="font-size:1.4rem;color:var(--gray)">–750</span></div>
+          <div class="plan-price-range">por mes</div>
+        </div>
+        <div class="plan-body">
+          <p class="plan-section-label">Incluye</p>
+          <ul class="plan-features">
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Hasta 6 automatizaciones o implementaciones por mes
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Gestión de contenido con IA (calendario + captions o scripts)
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              2 reuniones mensuales de 30 min
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Soporte prioritario por WhatsApp (respuesta en 12hs)
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Reporte mensual con métricas de impacto
+            </li>
+          </ul>
+          <p class="plan-section-label plan-section-label--no">No incluye</p>
+          <ul class="plan-features">
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Desarrollo de apps custom
+            </li>
+            <li class="disabled">
+              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              Capacitación de equipo
+            </li>
+          </ul>
+          <a href="#agendar" class="plan-cta plan-cta-solid">Agendar llamada</a>
+        </div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan-card fade-up" data-delay="0.2">
+        <div class="plan-head">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price-subtitle">"Transformación completa"</div>
+          <div class="plan-price"><sup>USD</sup>1.000<span style="font-size:1.4rem;color:var(--gray)">–1.500</span></div>
+          <div class="plan-price-range">por mes</div>
+        </div>
+        <div class="plan-body">
+          <p class="plan-section-label">Incluye todo</p>
+          <ul class="plan-features">
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Hasta 10 implementaciones + 1 desarrollo custom por mes
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Gestión completa de contenido con IA
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Capacitación del equipo (1 sesión/mes)
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Reunión semanal de 30 min
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Soporte prioritario (respuesta en 6hs)
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Roadmap trimestral de IA para tu negocio
+            </li>
+            <li>
+              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Prioridad absoluta
+            </li>
+          </ul>
+          <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="plans-footnote">Sin compromiso de permanencia · Todos los planes incluyen auditoría inicial · Precios en USD</p>
+
+  </div>
+</section>
+
+<div class="divider-red"></div>
+
+<!-- ── AGENDAR ── -->
+<section id="agendar" class="section">
+  <div class="section-inner">
+    <div class="agendar-wrap">
+
+      <div class="agendar-text fade-up">
+        <span class="section-label">Sin compromiso</span>
+        <h2 class="section-title">Agendá una reunión gratuita</h2>
+        <p>En 30 minutos analizamos tu negocio, identificamos las automatizaciones de mayor impacto y te contamos exactamente qué haríamos y qué resultados esperás.</p>
+        <ul class="agendar-bullets">
+          <li>Sin costo ni compromiso</li>
+          <li>Diagnóstico real de tu situación</li>
+          <li>Plan de acción concreto para llevar</li>
+          <li>Disponibilidad de lunes a sábado</li>
+        </ul>
+      </div>
+
+      <div class="calendar-embed fade-up" data-delay="0.15">
+        <iframe src="https://cal.com/manuel-estevez-hbwqaj/20-min-meeting" style="width:100%;height:600px;border:none;"></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
 <footer>
-  Auditoría generada el 26 de marzo de 2026 &nbsp;·&nbsp; mateslaplata.com.ar &nbsp;·&nbsp; Plataforma: Tiendanube
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-brand">VIA<span>.</span></a>
+        <p class="footer-tagline">Automatización con IA para negocios de LATAM.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#que-hacemos">Qué hacemos</a></li>
+            <li><a href="#casos">Casos de éxito</a></li>
+            <li><a href="#planes">Planes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://instagram.com/viastudio.ar" target="_blank" rel="noopener">@viastudio.ar</a></li>
+            <li><a href="#agendar">Agendar reunión</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Via Studio. Todos los derechos reservados.</span>
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="https://instagram.com/viastudio.ar" target="_blank" rel="noopener" aria-label="Instagram de Via Studio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" target="_blank" rel="noopener" aria-label="WhatsApp de Via Studio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+
+<!-- ── BOTÓN FLOTANTE WHATSAPP ── -->
+<a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── LETTER STAGGER (HERO TITLE) ── */
+  var heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+    var letters = '';
+    var delay = 0;
+    'Via'.split('').forEach(function(ch) {
+      letters += '<span class="letter" style="animation-delay:' + (delay++ * 0.05).toFixed(2) + 's">' + ch + '</span>';
+    });
+    letters += '<span style="color:var(--red)">';
+    'Studio'.split('').forEach(function(ch) {
+      letters += '<span class="letter" style="animation-delay:' + (delay++ * 0.05).toFixed(2) + 's">' + ch + '</span>';
+    });
+    letters += '</span>';
+    heroTitle.innerHTML = letters;
+  }
+
+  /* ── PARTÍCULAS HERO ── */
+  var wrap = document.querySelector('.particles-wrap');
+  if (wrap) {
+    for (var i = 0; i < 16; i++) {
+      var p = document.createElement('span');
+      p.className = 'particle';
+      var size = (1 + Math.random() * 1.4).toFixed(1);
+      var tx   = (-35 + Math.random() * 70).toFixed(0);
+      var dur  = (7 + Math.random() * 9).toFixed(1);
+      var del  = (-Math.random() * 14).toFixed(1);
+      p.style.cssText =
+        'left:'   + (5  + Math.random() * 90).toFixed(0) + '%;' +
+        'top:'    + (5  + Math.random() * 85).toFixed(0) + '%;' +
+        'width:'  + size + 'px;height:' + size + 'px;' +
+        '--tx:'   + tx   + 'px;' +
+        'animation-duration:' + dur + 's;' +
+        'animation-delay:'    + del + 's;';
+      wrap.appendChild(p);
+    }
+  }
+
+  /* ── PARTÍCULAS GLOBALES FLOTANTES ── */
+  for (var j = 0; j < 15; j++) {
+    var pg = document.createElement('div');
+    pg.className = 'particle-global';
+    var pgSize = (1 + Math.random() * 1.2).toFixed(1);
+    var pgTx   = (-25 + Math.random() * 50).toFixed(0);
+    var pgDur  = (15 + Math.random() * 10).toFixed(1);
+    var pgDel  = (-Math.random() * 20).toFixed(1);
+    pg.style.cssText =
+      'left:'  + (3  + Math.random() * 94).toFixed(0) + '%;' +
+      'top:'   + (5  + Math.random() * 88).toFixed(0) + '%;' +
+      'width:' + pgSize + 'px;height:' + pgSize + 'px;' +
+      '--pgx:' + pgTx   + 'px;' +
+      'animation-duration:' + pgDur + 's;' +
+      'animation-delay:'    + pgDel + 's;';
+    document.body.appendChild(pg);
+  }
+
+  /* ── PARALLAX VÍAS ── */
+  var rails = document.querySelectorAll('.track-rail');
+  if (rails.length) {
+    window.addEventListener('scroll', function () {
+      var ty = 'translateY(' + (window.scrollY * 0.15).toFixed(1) + 'px)';
+      for (var k = 0; k < rails.length; k++) {
+        rails[k].style.transform = ty;
+      }
+    }, { passive: true });
+  }
+
+  /* ── COUNTER ANIMATION ── */
+  function animateCounter(el) {
+    var target   = parseFloat(el.dataset.target) || 0;
+    var prefix   = el.dataset.prefix || '';
+    var suffix   = el.dataset.suffix || '';
+    var duration = 2000;
+    var startTs  = null;
+    function step(ts) {
+      if (!startTs) startTs = ts;
+      var progress = Math.min((ts - startTs) / duration, 1);
+      var eased    = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── INTERSECTION OBSERVER ── */
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.fade-up').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el    = entry.target;
+      var delay = el.dataset.delay ? parseFloat(el.dataset.delay) : 0;
+      el.style.transitionDelay = delay + 's';
+      el.classList.add('is-visible');
+      if (el.dataset.counter) animateCounter(el);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(function (el) {
+    io.observe(el);
+  });
+
+})();
+</script>
 
 </body>
 </html>
