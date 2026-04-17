@@ -930,29 +930,6 @@
       z-index: 0;
     }
 
-    .hero-tracks {
-      position: absolute;
-      left: 20px;
-      top: 0;
-      width: 52px;
-      height: 130%;
-      pointer-events: none;
-      opacity: 0.1;
-      will-change: transform;
-      background-image:
-        linear-gradient(#2a2a2a, #2a2a2a),
-        linear-gradient(#2a2a2a, #2a2a2a),
-        repeating-linear-gradient(
-          to bottom,
-          transparent 0, transparent 28px,
-          #1e1e1e 28px, #1e1e1e 33px,
-          transparent 33px, transparent 60px
-        );
-      background-size: 2px 100%, 2px 100%, 100% 60px;
-      background-position: 6px 0, 44px 0, 0 0;
-      background-repeat: no-repeat, no-repeat, repeat-y;
-    }
-
     .particles-wrap {
       position: absolute;
       inset: 0;
@@ -1074,61 +1051,65 @@
 
     /* ── GRAVEL TEXTURE ── */
     body {
+      background-color: #0a0a0a;
       background-image:
-        radial-gradient(circle 1px at 7% 11%, #1e1e1e 100%, transparent 0),
-        radial-gradient(circle 1.5px at 23% 6%, #181818 100%, transparent 0),
-        radial-gradient(circle 1px at 41% 19%, #1c1c1c 100%, transparent 0),
-        radial-gradient(circle 2px at 64% 8%, #141414 100%, transparent 0),
-        radial-gradient(circle 1px at 83% 14%, #1a1a1a 100%, transparent 0),
-        radial-gradient(circle 1.5px at 96% 22%, #161616 100%, transparent 0),
-        radial-gradient(circle 1px at 15% 33%, #1e1e1e 100%, transparent 0),
-        radial-gradient(circle 2px at 37% 28%, #131313 100%, transparent 0),
-        radial-gradient(circle 1px at 58% 37%, #1b1b1b 100%, transparent 0),
-        radial-gradient(circle 1.5px at 79% 42%, #171717 100%, transparent 0),
-        radial-gradient(circle 1px at 91% 31%, #1c1c1c 100%, transparent 0),
-        radial-gradient(circle 2px at 4% 51%, #151515 100%, transparent 0),
-        radial-gradient(circle 1px at 28% 47%, #1d1d1d 100%, transparent 0),
-        radial-gradient(circle 1.5px at 49% 56%, #181818 100%, transparent 0),
-        radial-gradient(circle 1px at 72% 63%, #1a1a1a 100%, transparent 0),
-        radial-gradient(circle 2px at 86% 58%, #131313 100%, transparent 0),
-        radial-gradient(circle 1px at 11% 69%, #1e1e1e 100%, transparent 0),
-        radial-gradient(circle 1.5px at 35% 74%, #161616 100%, transparent 0),
-        radial-gradient(circle 2px at 55% 82%, #141414 100%, transparent 0),
-        radial-gradient(circle 1px at 77% 77%, #1c1c1c 100%, transparent 0),
-        radial-gradient(circle 1.5px at 93% 86%, #171717 100%, transparent 0),
-        radial-gradient(circle 1px at 19% 88%, #1b1b1b 100%, transparent 0),
-        radial-gradient(ellipse 3px 2px at 44% 94%, #111 100%, transparent 0),
-        radial-gradient(ellipse 2px 3px at 67% 91%, #0f0f0f 100%, transparent 0),
-        radial-gradient(ellipse 3px 2px at 88% 97%, #121212 100%, transparent 0);
-      background-size: 120px 100px;
+        /* Piedras medianas */
+        radial-gradient(ellipse 5px 3px at 9%  7%,  #131313 0%, transparent 100%),
+        radial-gradient(ellipse 3px 4px at 23% 19%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 4px 2px at 41% 11%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 2px 5px at 58% 23%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 5px 3px at 74% 6%,  #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 3px 4px at 88% 17%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 4px 3px at 14% 34%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 6px 3px at 32% 42%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 2px at 49% 36%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 3px 5px at 67% 48%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 4px 3px at 82% 39%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 2px 4px at 95% 31%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 4px at 7%  56%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 3px 2px at 26% 61%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 6px 3px at 44% 54%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 2px 5px at 63% 66%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 3px at 78% 57%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 3px 4px at 91% 72%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 4px 2px at 17% 79%, #111111 0%, transparent 100%),
+        radial-gradient(ellipse 6px 4px at 35% 86%, #131313 0%, transparent 100%),
+        radial-gradient(ellipse 3px 5px at 53% 91%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(ellipse 5px 3px at 71% 83%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(ellipse 4px 3px at 86% 96%, #111111 0%, transparent 100%),
+        /* Gravel fino */
+        radial-gradient(circle 1px at 4%  28%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1px at 19% 14%, #0f0f0f 0%, transparent 100%),
+        radial-gradient(circle 1px at 37% 3%,  #111111 0%, transparent 100%),
+        radial-gradient(circle 1px at 55% 44%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1px at 73% 59%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(circle 1px at 91% 74%, #111111 0%, transparent 100%),
+        radial-gradient(circle 1px at 11% 89%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 47% 3%,  #0f0f0f 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 83% 43%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 29% 68%, #111111 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 65% 93%, #0d0d0d 0%, transparent 100%),
+        radial-gradient(circle 1px at 52% 77%, #131313 0%, transparent 100%),
+        radial-gradient(circle 1px at 7%  45%, #0f0f0f 0%, transparent 100%);
+      background-size: 120px 80px;
       background-repeat: repeat;
     }
 
-    /* ── TRAIN TRACKS FIXED ── */
+    /* ── TRAIN TRACKS SVG FIXED ── */
     .track-rail {
       position: fixed;
-      top: -20%;
+      top: 0;
       width: 52px;
-      height: 140%;
-      opacity: 0.12;
+      opacity: 0.2;
       pointer-events: none;
       z-index: 1;
       will-change: transform;
-      background-image:
-        linear-gradient(to bottom, #333 0%, #333 100%),
-        linear-gradient(to bottom, #333 0%, #333 100%),
-        repeating-linear-gradient(
-          to bottom,
-          transparent 0, transparent 24px,
-          #2a2a2a 24px, #2a2a2a 26px,
-          transparent 26px, transparent 30px
-        );
-      background-size: 2px 100%, 2px 100%, 100% 30px;
-      background-position: 8px 0, 44px 0, 0 0;
-      background-repeat: no-repeat, no-repeat, repeat-y;
     }
-    .track-rail--left  { left: 40px; }
-    .track-rail--right { right: 40px; }
+    .track-rail--left  { left: 20px; }
+    .track-rail--right { right: 20px; }
+    @media (max-width: 768px) {
+      .track-rail { display: none; }
+    }
 
     /* ── LETTER STAGGER ── */
     @keyframes letterIn {
@@ -1211,8 +1192,30 @@
 </head>
 <body>
 
-<div class="track-rail track-rail--left" aria-hidden="true"></div>
-<div class="track-rail track-rail--right" aria-hidden="true"></div>
+<div class="track-rail track-rail--left" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="52" height="10000">
+    <defs>
+      <pattern id="tp-l" x="0" y="0" width="52" height="28" patternUnits="userSpaceOnUse">
+        <rect x="10" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="39" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="8"  y="13" width="36" height="2" fill="#222222"/>
+      </pattern>
+    </defs>
+    <rect width="52" height="10000" fill="url(#tp-l)"/>
+  </svg>
+</div>
+<div class="track-rail track-rail--right" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="52" height="10000">
+    <defs>
+      <pattern id="tp-r" x="0" y="0" width="52" height="28" patternUnits="userSpaceOnUse">
+        <rect x="10" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="39" y="0" width="3" height="28" fill="#2a2a2a"/>
+        <rect x="8"  y="13" width="36" height="2" fill="#222222"/>
+      </pattern>
+    </defs>
+    <rect width="52" height="10000" fill="url(#tp-r)"/>
+  </svg>
+</div>
 
 <!-- ── NAVEGACIÓN ── -->
 <nav>
@@ -1582,7 +1585,7 @@
     <div class="footer-top">
       <div>
         <a href="#" class="footer-brand">VIA<span>.</span></a>
-        <p class="footer-tagline">Automatización con IA para negocios argentinos.</p>
+        <p class="footer-tagline">Automatización con IA para negocios de LATAM.</p>
       </div>
 
       <div class="footer-links">
@@ -1699,7 +1702,7 @@
   var rails = document.querySelectorAll('.track-rail');
   if (rails.length) {
     window.addEventListener('scroll', function () {
-      var ty = 'translateY(' + (window.scrollY * 0.3).toFixed(1) + 'px)';
+      var ty = 'translateY(' + (window.scrollY * 0.15).toFixed(1) + 'px)';
       for (var k = 0; k < rails.length; k++) {
         rails[k].style.transform = ty;
       }
