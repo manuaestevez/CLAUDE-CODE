@@ -448,9 +448,23 @@
 
     .soluciones-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
       margin-bottom: 48px;
+    }
+
+    .solucion-illustration {
+      width: 100%;
+      height: 90px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .solucion-illustration svg {
+      width: 100%;
+      height: 90px;
     }
 
     .solucion-card {
@@ -458,7 +472,7 @@
       border: 1px solid var(--border);
       border-left: 3px solid #2a2a2a;
       border-radius: 16px;
-      padding: 36px 32px;
+      padding: 28px 22px;
       transition: border-color 0.2s, transform 0.22s ease, box-shadow 0.22s ease;
     }
 
@@ -740,9 +754,12 @@
     @media (max-width: 900px) {
       .services-grid,
       .principles-grid,
-      .cases-grid,
-      .soluciones-grid {
+      .cases-grid {
         grid-template-columns: 1fr;
+      }
+
+      .soluciones-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .agendar-wrap {
@@ -768,6 +785,10 @@
     }
 
     @media (max-width: 640px) {
+      .soluciones-grid {
+        grid-template-columns: 1fr;
+      }
+
       nav {
         padding: 16px 20px;
       }
@@ -1308,12 +1329,20 @@
     <div class="soluciones-grid">
 
       <div class="solucion-card fade-up" data-delay="0">
-        <div class="solucion-problema">¿Perdés ventas por no responder a tiempo?</div>
-        <div class="service-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        <div class="solucion-illustration" aria-hidden="true">
+          <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="38" rx="42" ry="30" fill="rgba(196,62,42,0.05)"/>
+            <rect x="8" y="8" width="72" height="44" rx="10" fill="rgba(196,62,42,0.1)" stroke="rgba(196,62,42,0.35)" stroke-width="1.5"/>
+            <path d="M18 52 L12 68 L34 52Z" fill="rgba(196,62,42,0.1)" stroke="rgba(196,62,42,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="28" cy="30" r="4" fill="#C43E2A"/>
+            <circle cx="44" cy="30" r="4" fill="rgba(196,62,42,0.55)"/>
+            <circle cx="60" cy="30" r="4" fill="rgba(196,62,42,0.22)"/>
+            <rect x="46" y="58" width="66" height="24" rx="8" fill="#161616" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <line x1="56" y1="67" x2="100" y2="67" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="56" y1="74" x2="86" y2="74" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
+        <div class="solucion-problema">¿Perdés ventas por no responder a tiempo?</div>
         <h3>Agentes & Chatbots IA</h3>
         <p>Agentes conversacionales que atienden clientes 24/7 en WhatsApp, Instagram y tu web. Califican leads, responden preguntas frecuentes y derivan cuando es necesario.</p>
         <ul class="solucion-features">
@@ -1326,12 +1355,22 @@
       </div>
 
       <div class="solucion-card fade-up" data-delay="0.1">
-        <div class="solucion-problema">¿Tu equipo hace a mano lo que la IA puede hacer sola?</div>
-        <div class="service-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        <div class="solucion-illustration" aria-hidden="true">
+          <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="28" width="26" height="26" rx="7" fill="#161616" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <circle cx="17" cy="41" r="5" fill="rgba(196,62,42,0.3)" stroke="rgba(196,62,42,0.5)" stroke-width="1"/>
+            <line x1="30" y1="41" x2="40" y2="41" stroke="rgba(196,62,42,0.5)" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <polyline points="37,37 43,41 37,45" fill="none" stroke="rgba(196,62,42,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="43" y="20" width="34" height="42" rx="7" fill="rgba(196,62,42,0.1)" stroke="#C43E2A" stroke-width="1.5"/>
+            <polyline points="60,30 54,43 64,43 58,55" fill="none" stroke="#C43E2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="77" y1="41" x2="87" y2="41" stroke="rgba(196,62,42,0.5)" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <polyline points="84,37 90,41 84,45" fill="none" stroke="rgba(196,62,42,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="90" y="28" width="26" height="26" rx="7" fill="#161616" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <line x1="98" y1="38" x2="110" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="98" y1="44" x2="107" y2="44" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
+        <div class="solucion-problema">¿Tu equipo hace a mano lo que la IA puede hacer sola?</div>
         <h3>Automatización de Procesos</h3>
         <p>Conectamos tus herramientas actuales — Shopify, Gmail, Sheets, Tiendanube — y automatizamos los flujos repetitivos que consumen tiempo y generan errores humanos.</p>
         <ul class="solucion-features">
@@ -1344,12 +1383,19 @@
       </div>
 
       <div class="solucion-card fade-up" data-delay="0.2">
-        <div class="solucion-problema">¿Generás contenido y emails sin estrategia ni datos?</div>
-        <div class="service-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        <div class="solucion-illustration" aria-hidden="true">
+          <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="22" width="66" height="46" rx="7" fill="rgba(196,62,42,0.08)" stroke="rgba(196,62,42,0.35)" stroke-width="1.5"/>
+            <polyline points="16,22 49,50 82,22" fill="none" stroke="rgba(196,62,42,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M88 32 Q95 45 88 58" fill="none" stroke="rgba(196,62,42,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M95 25 Q106 45 95 65" fill="none" stroke="rgba(196,62,42,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M102 18 Q117 45 102 72" fill="none" stroke="rgba(196,62,42,0.1)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="76" cy="22" r="10" fill="#C43E2A"/>
+            <polyline points="71,25 76,17 81,25" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="76" y1="17" x2="76" y2="27" stroke="white" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
+        <div class="solucion-problema">¿Generás contenido y emails sin estrategia ni datos?</div>
         <h3>Marketing con IA</h3>
         <p>Emails automatizados y personalizados, calendarios de contenido con IA, campañas segmentadas. Tu marketing trabaja aunque vos no estés.</p>
         <ul class="solucion-features">
@@ -1362,14 +1408,24 @@
       </div>
 
       <div class="solucion-card fade-up" data-delay="0.3">
-        <div class="solucion-problema">¿Tomás decisiones sin datos o con datos de hace semanas?</div>
-        <div class="service-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="20" x2="18" y2="10"/>
-            <line x1="12" y1="20" x2="12" y2="4"/>
-            <line x1="6" y1="20" x2="6" y2="14"/>
+        <div class="solucion-illustration" aria-hidden="true">
+          <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <line x1="14" y1="14" x2="14" y2="72" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <line x1="14" y1="72" x2="114" y2="72" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <line x1="14" y1="55" x2="114" y2="55" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="14" y1="38" x2="114" y2="38" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3,3"/>
+            <rect x="20" y="54" width="16" height="18" rx="3" fill="rgba(196,62,42,0.25)"/>
+            <rect x="44" y="44" width="16" height="28" rx="3" fill="rgba(196,62,42,0.42)"/>
+            <rect x="68" y="32" width="16" height="40" rx="3" fill="rgba(196,62,42,0.62)"/>
+            <rect x="92" y="18" width="16" height="54" rx="3" fill="#C43E2A"/>
+            <polyline points="28,52 52,42 76,30 100,18" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4,2"/>
+            <circle cx="28" cy="52" r="2.5" fill="white"/>
+            <circle cx="52" cy="42" r="2.5" fill="white"/>
+            <circle cx="76" cy="30" r="2.5" fill="white"/>
+            <circle cx="100" cy="18" r="2.5" fill="white"/>
           </svg>
         </div>
+        <div class="solucion-problema">¿Tomás decisiones sin datos o con datos de hace semanas?</div>
         <h3>Analítica & Reportes</h3>
         <p>Dashboards inteligentes y reportes automáticos que te muestran exactamente qué está funcionando. Información en tiempo real para decisiones en tiempo real.</p>
         <ul class="solucion-features">
