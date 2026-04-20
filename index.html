@@ -438,205 +438,118 @@
       border-radius: 4px;
     }
 
-    /* ── PLANES ── */
-    #planes {
+    /* ── SOLUCIONES ── */
+    #soluciones {
       background: #0E0E0E;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-    }
-
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      align-items: start;
-    }
-
-    .plan-card {
-      background: var(--black);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .plan-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(196, 62, 42, 0.35);
-    }
-
-    .plan-card.featured {
-      border-color: var(--red);
       position: relative;
     }
 
-    .plan-badge {
-      position: absolute;
-      top: -1px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--red);
-      color: white;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 0 0 8px 8px;
+    .soluciones-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
     }
 
-    .plan-head {
-      padding: 32px 28px 24px;
-      border-bottom: 1px solid var(--border);
+    .solucion-card {
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-left: 3px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: border-color 0.2s, transform 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .plan-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 16px;
+    .solucion-card:hover {
+      border-color: rgba(196, 62, 42, 0.4);
+      border-left-color: var(--red) !important;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
     }
 
-    .plan-card.featured .plan-name {
-      color: var(--red);
-    }
-
-    .plan-price {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .plan-price sup {
-      font-size: 1.2rem;
-      font-weight: 700;
-      vertical-align: super;
-      margin-right: 2px;
-      font-family: 'Oswald', sans-serif;
-    }
-
-    .plan-price-subtitle {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      color: var(--gray);
-      font-style: italic;
-      margin-bottom: 12px;
-    }
-
-    .plan-price-range {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      color: var(--gray);
-      margin-top: 6px;
-    }
-
-    .plan-body {
-      padding: 28px;
-    }
-
-    .plan-section-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 10px;
-      margin-top: 20px;
-    }
-
-    .plan-section-label:first-child { margin-top: 0; }
-
-    .plan-section-label--no {
-      color: #555;
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-
-    .plans-footnote {
-      text-align: center;
-      margin-top: 32px;
+    .solucion-problema {
       font-size: 0.78rem;
-      color: #555;
-      letter-spacing: 0.02em;
+      font-weight: 600;
+      color: var(--red);
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      font-style: italic;
     }
 
-    .plan-desc {
-      font-size: 0.88rem;
+    .solucion-card h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      margin-top: 16px;
+    }
+
+    .solucion-card p {
+      font-size: 0.9rem;
       color: var(--gray);
-      margin-bottom: 24px;
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
 
-    .plan-features {
+    .solucion-features {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 32px;
+      gap: 9px;
+      margin-bottom: 28px;
     }
 
-    .plan-features li {
+    .solucion-features li {
+      font-size: 0.85rem;
+      color: var(--gray);
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.875rem;
-      line-height: 1.5;
+      align-items: center;
+      gap: 9px;
     }
 
-    .plan-features li .check {
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      color: var(--red);
-    }
-
-    .plan-features li .cross {
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      color: #444;
-    }
-
-    .plan-features li.disabled {
-      color: #444;
-    }
-
-    .plan-cta {
-      display: block;
-      text-align: center;
-      padding: 13px 20px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .plan-cta-outline {
-      border: 1.5px solid rgba(255,255,255,0.2);
-      color: var(--white);
-    }
-
-    .plan-cta-outline:hover {
-      border-color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .plan-cta-solid {
+    .solucion-features li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
       background: var(--red);
-      color: var(--white);
-      border: 1.5px solid var(--red);
+      flex-shrink: 0;
     }
 
-    .plan-cta-solid:hover {
-      background: var(--red-dark);
+    .solucion-cta {
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .solucion-cta:hover {
+      border-color: var(--red);
+      color: var(--red);
+      background: rgba(196,62,42,0.04);
+    }
+
+    .soluciones-cta-wrap {
+      text-align: center;
+      padding: 40px;
+      background: rgba(196,62,42,0.04);
+      border: 1px solid rgba(196,62,42,0.15);
+      border-radius: 16px;
+    }
+
+    .soluciones-cta-text {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
 
     /* ── AGENDAR ── */
@@ -828,7 +741,7 @@
       .services-grid,
       .principles-grid,
       .cases-grid,
-      .plans-grid {
+      .soluciones-grid {
         grid-template-columns: 1fr;
       }
 
@@ -901,7 +814,7 @@
 
     /* Noise alternada más densa en secciones oscuras */
     #principios::after,
-    #planes::after {
+    #soluciones::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -913,7 +826,7 @@
     }
 
     #principios,
-    #planes {
+    #soluciones {
       position: relative;
     }
 
@@ -1134,17 +1047,6 @@
       animation: navGlitch 0.12s steps(1) 2;
     }
 
-    /* ── PLAN CARD BORDER LEFT ── */
-    .plan-card {
-      border-left-width: 3px;
-      border-left-color: #2a2a2a;
-    }
-    .plan-card:hover {
-      border-left-color: var(--red) !important;
-    }
-    .plan-card.featured {
-      border-left-color: var(--red);
-    }
 
     /* ── GLOBAL FLOATING PARTICLES ── */
     .particle-global {
@@ -1221,9 +1123,9 @@
 <nav>
   <a href="#" class="nav-logo">VIA<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#que-hacemos">Servicios</a></li>
+    <li><a href="#soluciones">Servicios</a></li>
     <li><a href="#casos">Casos</a></li>
-    <li><a href="#planes">Planes</a></li>
+    <li><a href="#que-hacemos">Proceso</a></li>
     <li><a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="nav-cta">Hablar con un asesor</a></li>
   </ul>
 </nav>
@@ -1394,159 +1296,97 @@
 
 <div class="divider-red"></div>
 
-<!-- ── PLANES ── -->
-<section id="planes" class="section">
+<!-- ── SOLUCIONES ── -->
+<section id="soluciones" class="section">
   <div class="section-inner">
     <div class="section-header fade-up">
-      <span class="section-label">Precios</span>
-      <h2 class="section-title">Planes</h2>
-      <p class="section-sub">Elegí el plan que se adapta a tu etapa. Todos incluyen onboarding y soporte continuo.</p>
+      <span class="section-label">Qué resolvemos</span>
+      <h2 class="section-title">Soluciones a medida</h2>
+      <p class="section-sub">Cada negocio tiene sus propios desafíos. Diseñamos la solución exacta para los tuyos — sin paquetes fijos, sin extras que no necesitás.</p>
     </div>
 
-    <div class="plans-grid">
+    <div class="soluciones-grid">
 
-      <!-- INICIAL -->
-      <div class="plan-card fade-up" data-delay="0">
-        <div class="plan-head">
-          <div class="plan-name">Inicial</div>
-          <div class="plan-price-subtitle">"Automatizá lo básico"</div>
-          <div class="plan-price"><sup>USD</sup>200<span style="font-size:1.4rem;color:var(--gray)">–350</span></div>
-          <div class="plan-price-range">por mes</div>
+      <div class="solucion-card fade-up" data-delay="0">
+        <div class="solucion-problema">¿Perdés ventas por no responder a tiempo?</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
         </div>
-        <div class="plan-body">
-          <p class="plan-section-label">Incluye</p>
-          <ul class="plan-features">
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Hasta 3 automatizaciones o implementaciones por mes
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              1 reunión mensual de 30 min (revisión + planificación)
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Soporte por WhatsApp (respuesta en 24hs hábiles)
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Reporte mensual de lo implementado
-            </li>
-          </ul>
-          <p class="plan-section-label plan-section-label--no">No incluye</p>
-          <ul class="plan-features">
-            <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
-              Creación de contenido
-            </li>
-            <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
-              Desarrollo custom (bots, apps)
-            </li>
-            <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
-              Capacitación de equipo
-            </li>
-          </ul>
-          <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
-        </div>
+        <h3>Agentes & Chatbots IA</h3>
+        <p>Agentes conversacionales que atienden clientes 24/7 en WhatsApp, Instagram y tu web. Califican leads, responden preguntas frecuentes y derivan cuando es necesario.</p>
+        <ul class="solucion-features">
+          <li>Integración con WhatsApp Business e Instagram</li>
+          <li>Calificación automática de leads</li>
+          <li>Disponible las 24hs, los 7 días</li>
+          <li>Sin contrataciones adicionales de personal</li>
+        </ul>
+        <a href="https://wa.me/5492216035779?text=Hola,%20me%20interesa%20un%20agente%20o%20chatbot%20con%20IA" class="solucion-cta" target="_blank" rel="noopener">Consultar →</a>
       </div>
 
-      <!-- CRECIMIENTO -->
-      <div class="plan-card featured fade-up" data-delay="0.1">
-        <div class="plan-badge">Más elegido</div>
-        <div class="plan-head">
-          <div class="plan-name">Crecimiento</div>
-          <div class="plan-price-subtitle">"Tu equipo de IA"</div>
-          <div class="plan-price"><sup>USD</sup>500<span style="font-size:1.4rem;color:var(--gray)">–750</span></div>
-          <div class="plan-price-range">por mes</div>
+      <div class="solucion-card fade-up" data-delay="0.1">
+        <div class="solucion-problema">¿Tu equipo hace a mano lo que la IA puede hacer sola?</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
         </div>
-        <div class="plan-body">
-          <p class="plan-section-label">Incluye</p>
-          <ul class="plan-features">
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Hasta 6 automatizaciones o implementaciones por mes
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Gestión de contenido con IA (calendario + captions o scripts)
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              2 reuniones mensuales de 30 min
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Soporte prioritario por WhatsApp (respuesta en 12hs)
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Reporte mensual con métricas de impacto
-            </li>
-          </ul>
-          <p class="plan-section-label plan-section-label--no">No incluye</p>
-          <ul class="plan-features">
-            <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
-              Desarrollo de apps custom
-            </li>
-            <li class="disabled">
-              <svg class="cross" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
-              Capacitación de equipo
-            </li>
-          </ul>
-          <a href="#agendar" class="plan-cta plan-cta-solid">Agendar llamada</a>
-        </div>
+        <h3>Automatización de Procesos</h3>
+        <p>Conectamos tus herramientas actuales — Shopify, Gmail, Sheets, Tiendanube — y automatizamos los flujos repetitivos que consumen tiempo y generan errores humanos.</p>
+        <ul class="solucion-features">
+          <li>Sin migraciones ni nuevos sistemas</li>
+          <li>Flujos entre múltiples plataformas</li>
+          <li>Alertas, notificaciones y reportes automáticos</li>
+          <li>Ahorro de horas desde la primera semana</li>
+        </ul>
+        <a href="https://wa.me/5492216035779?text=Hola,%20me%20interesa%20automatizar%20procesos%20en%20mi%20negocio" class="solucion-cta" target="_blank" rel="noopener">Consultar →</a>
       </div>
 
-      <!-- PREMIUM -->
-      <div class="plan-card fade-up" data-delay="0.2">
-        <div class="plan-head">
-          <div class="plan-name">Premium</div>
-          <div class="plan-price-subtitle">"Transformación completa"</div>
-          <div class="plan-price"><sup>USD</sup>1.000<span style="font-size:1.4rem;color:var(--gray)">–1.500</span></div>
-          <div class="plan-price-range">por mes</div>
+      <div class="solucion-card fade-up" data-delay="0.2">
+        <div class="solucion-problema">¿Generás contenido y emails sin estrategia ni datos?</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
         </div>
-        <div class="plan-body">
-          <p class="plan-section-label">Incluye todo</p>
-          <ul class="plan-features">
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Hasta 10 implementaciones + 1 desarrollo custom por mes
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Gestión completa de contenido con IA
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Capacitación del equipo (1 sesión/mes)
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Reunión semanal de 30 min
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Soporte prioritario (respuesta en 6hs)
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Roadmap trimestral de IA para tu negocio
-            </li>
-            <li>
-              <svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2 8 6 12 14 4"/></svg>
-              Prioridad absoluta
-            </li>
-          </ul>
-          <a href="https://wa.me/5492216035779?text=Hola,%20vi%20Via%20Studio%20y%20me%20interesa%20saber%20más" class="plan-cta plan-cta-outline" target="_blank" rel="noopener">Consultar</a>
+        <h3>Marketing con IA</h3>
+        <p>Emails automatizados y personalizados, calendarios de contenido con IA, campañas segmentadas. Tu marketing trabaja aunque vos no estés.</p>
+        <ul class="solucion-features">
+          <li>Email marketing con segmentación avanzada</li>
+          <li>Contenido para redes generado con IA</li>
+          <li>Recuperación de carritos abandonados</li>
+          <li>Conversión medible desde el día 1</li>
+        </ul>
+        <a href="https://wa.me/5492216035779?text=Hola,%20me%20interesa%20mejorar%20mi%20marketing%20con%20IA" class="solucion-cta" target="_blank" rel="noopener">Consultar →</a>
+      </div>
+
+      <div class="solucion-card fade-up" data-delay="0.3">
+        <div class="solucion-problema">¿Tomás decisiones sin datos o con datos de hace semanas?</div>
+        <div class="service-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
         </div>
+        <h3>Analítica & Reportes</h3>
+        <p>Dashboards inteligentes y reportes automáticos que te muestran exactamente qué está funcionando. Información en tiempo real para decisiones en tiempo real.</p>
+        <ul class="solucion-features">
+          <li>Dashboards personalizados para tu negocio</li>
+          <li>Reportes automáticos por email o WhatsApp</li>
+          <li>Análisis de campañas publicitarias</li>
+          <li>KPIs definidos por vos, no por nosotros</li>
+        </ul>
+        <a href="https://wa.me/5492216035779?text=Hola,%20me%20interesa%20analítica%20inteligente%20para%20mi%20negocio" class="solucion-cta" target="_blank" rel="noopener">Consultar →</a>
       </div>
 
     </div>
 
-    <p class="plans-footnote">Sin compromiso de permanencia · Todos los planes incluyen auditoría inicial · Precios en USD</p>
+    <div class="soluciones-cta-wrap fade-up">
+      <p class="soluciones-cta-text">¿No sabés por dónde empezar? Contanos tu situación y armamos una propuesta personalizada.</p>
+      <a href="#agendar" class="btn btn-agendar">Agendar diagnóstico gratuito →</a>
+    </div>
 
   </div>
 </section>
@@ -1592,9 +1432,9 @@
         <div class="footer-col">
           <h4>Servicios</h4>
           <ul>
-            <li><a href="#que-hacemos">Qué hacemos</a></li>
+            <li><a href="#soluciones">Soluciones</a></li>
             <li><a href="#casos">Casos de éxito</a></li>
-            <li><a href="#planes">Planes</a></li>
+            <li><a href="#que-hacemos">Cómo trabajamos</a></li>
           </ul>
         </div>
         <div class="footer-col">
